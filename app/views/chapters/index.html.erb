@@ -1,0 +1,30 @@
+<h1>Chapters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Chapter Number</th>
+      <th>Chapter Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chapters.each do |chapter| %>
+      <tr>
+        <td><%= chapter.chapter_number %></td>
+        <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
+        <td><%= link_to 'Show', [@manga, chapter] %></td>
+        <td><%= link_to 'Edit', edit_manga_chapter_path(@manga, chapter) %></td>
+        <td><%= link_to 'Destroy', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chapter', new_manga_chapter_path(@manga) %>
+<%= link_to 'Back to Manga', @manga %>
