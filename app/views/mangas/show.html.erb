@@ -1,21 +1,27 @@
 <style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
   .manga-details {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 2rem;
   }
 
-  .manga-cover {
-    flex: 1;
-    max-width: 300px;
-    text-align: center;
+  .manga-cover img {
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .manga-info {
-    flex: 1;
-    max-width: 300px;
+    max-width: 350px;
     padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .manga-title {
@@ -38,6 +44,36 @@
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
   }
+
+  .chapters-section {
+    text-align: center;
+    margin-top: 2rem;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chapters-list {
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: #f60;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    margin: 0 0.5rem;
+  }
+
+  .button:hover {
+    background-color: #f90;
+  }
 </style>
 
 <div class="manga-details">
@@ -54,8 +90,16 @@
     <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
     <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
     <p class="manga-user"><strong>User:</strong> <%= @manga.user.email %></p>
-
-    <%= link_to 'Edit', edit_manga_path(@manga) %> |
-    <%= link_to 'Back', mangas_path %>
   </div>
+</div>
+
+<div class="chapters-section">
+  <h2>Chapters</h2>
+  <div class="chapters-list">
+    <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+  </div>
+
+  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
+  <%= link_to 'Edit', edit_manga_path(@manga), class: 'button' %>
+  <%= link_to 'Back', mangas_path, class: 'button' %>
 </div>

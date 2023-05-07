@@ -1,0 +1,21 @@
+<p>
+  <strong>Chapter Number:</strong>
+  <%= @chapter.chapter_number %>
+</p>
+
+<p>
+  <strong>Chapter Title:</strong>
+  <%= @chapter.chapter_title %>
+</p>
+
+<% if @chapter.chapter_photos.attached? %>
+  <h3>Chapter Pages:</h3>
+  <div class="chapter-photos">
+    <% @chapter.chapter_photos.each do |photo| %>
+      <%= cl_image_tag photo.key, width: 300, height: 300, crop: :fill, alt: "Chapter Photo" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_manga_chapter_path(@manga, @chapter) %> |
+<%= link_to 'Back', manga_chapters_path(@manga) %>
