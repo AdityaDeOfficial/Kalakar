@@ -1,0 +1,61 @@
+<style>
+  .manga-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .manga-cover {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .manga-info {
+    flex: 1;
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+  .manga-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-author {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-description {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-user {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+
+<div class="manga-details">
+  <div class="manga-cover">
+    <% if @manga.cover_image.attached? %>
+      <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title %>
+    <% else %>
+      <p>No cover image</p>
+    <% end %>
+  </div>
+
+  <div class="manga-info">
+    <p class="manga-title"><strong>Title:</strong> <%= @manga.manga_title %></p>
+    <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
+    <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
+    <p class="manga-user"><strong>User:</strong> <%= @manga.user.email %></p>
+
+    <%= link_to 'Edit', edit_manga_path(@manga) %> |
+    <%= link_to 'Back', mangas_path %>
+  </div>
+</div>
