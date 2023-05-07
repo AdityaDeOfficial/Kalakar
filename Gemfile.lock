@@ -236,6 +236,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    taggable (0.2.3)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -290,6 +291,7 @@ DEPENDENCIES
   simple_form!
   sprockets-rails
   stimulus-rails
+  taggable
   turbo-rails
   tzinfo-data
   web-console

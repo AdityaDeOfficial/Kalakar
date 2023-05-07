@@ -72,11 +72,35 @@
     border-color: #0056b3;
   }
 
+    /* Add styles for the buttons */
+  .btn {
+    color: #fff;
+    text-decoration: none;
+    background-color: #A8EACE;
+    border: 1px solid #A8EACE;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  /* Space between the header buttons */
+  .page-header a:not(:last-child) {
+    margin-right: 1rem;
+  }
+
 </style>
 
 <div class="page-header">
-  <h1>Mangas</h1>
-  <%= link_to 'New Manga', new_manga_path %>
+  <h1>Recently Added</h1>
+  <%= link_to 'New Manga', new_manga_path, class: 'btn' %> <!-- Add the 'btn' class -->
+  <%= link_to 'Go to Dashboard', dashboard_index_path, class: 'btn' %> <!-- Add the 'btn' class -->
 </div>
 
 <div class="manga-container">

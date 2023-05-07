@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :mangas do
     resources :chapters
   end
+
+  resources :dashboard, only: [:index]
 end
