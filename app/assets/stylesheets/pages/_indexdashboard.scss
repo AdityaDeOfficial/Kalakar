@@ -1,0 +1,120 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-box {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.dashboard-heading {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.dashboard-welcome {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+.dashboard-manga-container {
+  margin-bottom: 3rem;
+}
+
+.dashboard-manga-heading-container {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.dashboard-manga-heading {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.dashboard-manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 2rem;
+}
+
+.dashboard-manga-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #FFFFD2;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.dashboard-manga-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-manga-image {
+  height: 270px;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-manga-card p {
+  margin: 0;
+  padding: 1rem;
+}
+
+.dashboard-manga-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+
+.dashboard-manga-author {
+  font-size: 1rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-manga-description {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.dashboard-manga-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-manga-buttons a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-manga-buttons a:hover {
+  background-color: #eee;
+  border-color: #999;
+  color: #333;
+}

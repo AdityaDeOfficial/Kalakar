@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+ <div class="dashboard-box">
+   <h1 class="dashboard-heading">Dashboard</h1>
+   <p class="dashboard-welcome">Welcome, <%= current_user.email %>!</p>
+ </div>
+
+ <div class="dashboard-manga-heading-container">
+   <h2 class="dashboard-manga-heading">Your Uploaded Mangas:</h2>
+ </div>
+
+    <% if @mangas.any? %>
+      <div class="dashboard-manga-grid">
+        <% @mangas.each do |manga| %>
+          <div class="dashboard-manga-card">
+            <div class="dashboard-manga-image">
+              <% if manga.cover_image.attached? %>
+                <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title %>
+              <% else %>
+                <p>No cover image</p>
+              <% end %>
+            </div>
+            <div class="dashboard-manga-info">
+              <p class="dashboard-manga-title"><%= link_to manga.manga_title, manga %></p>
+              <p class="dashboard-manga-author"><%= manga.author %></p>
+              <p class="dashboard-manga-description"><%= manga.description.truncate(50) %></p>
+              <div class="dashboard-manga-links">
+                <p><%= link_to 'Show', manga, class: 'dashboard-manga-link' %></p>
+                <p><%= link_to 'Edit', edit_manga_path(manga), class: 'dashboard-manga-link' %></p>
+                <p><%= link_to 'Destroy', manga_path(manga), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dashboard-manga-link' %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="dashboard-manga-none">
+        <p>You haven't uploaded any mangas yet.</p>
+      </div>
+    <% end %>
+
+    <div class="dashboard-manga-buttons">
+      <p><%= link_to 'Upload Manga', new_manga_path, class: 'dashboard-manga-button' %></p>
+      <p><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dashboard-manga-button' %></p>
+    </div>
+  </div>
+</div>
