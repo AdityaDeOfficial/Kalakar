@@ -1,32 +1,34 @@
-<%= form_with(model: [ @manga, chapter ], local: true) do |form| %>
-  <% if chapter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+<div class="chapter-form-container">
+  <%= form_with(model: [@manga, @chapter], local: true) do |form| %>
+    <% if @chapter.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
 
-      <ul>
-        <% chapter.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <ul>
+        <% @chapter.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-      </ul>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :chapter_number, "Chapter Number" %>
+      <%= form.number_field :chapter_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :chapter_title, "Chapter Title" %>
+      <%= form.text_field :chapter_title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :chapter_photos, "Chapter Photos" %>
+      <%= form.file_field :chapter_photos, multiple: true, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :chapter_number %>
-    <%= form.number_field :chapter_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :chapter_title %>
-    <%= form.text_field :chapter_title %>
-  </div>
-
-  <div class="field">
-   <%= form.label :chapter_photos %>
-   <%= form.file_field :chapter_photos, multiple: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

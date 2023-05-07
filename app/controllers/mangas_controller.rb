@@ -36,7 +36,7 @@ class MangasController < ApplicationController
 
   def destroy
     @manga.destroy
-    redirect_to mangas_path, notice: 'Manga was successfully destroyed.'
+    redirect_to root_path, notice: 'Manga was successfully destroyed.'
   end
 
   private

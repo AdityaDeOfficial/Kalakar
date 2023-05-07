@@ -1,21 +1,75 @@
-<p>
-  <strong>Chapter Number:</strong>
-  <%= @chapter.chapter_number %>
-</p>
+<style>
+  .chapter-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
 
-<p>
-  <strong>Chapter Title:</strong>
-  <%= @chapter.chapter_title %>
-</p>
+  .chapter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
 
-<% if @chapter.chapter_photos.attached? %>
-  <h3>Chapter Pages:</h3>
-  <div class="chapter-photos">
-    <% @chapter.chapter_photos.each do |photo| %>
-      <%= cl_image_tag photo.key, width: 300, height: 300, crop: :fill, alt: "Chapter Photo" %>
-    <% end %>
+  .chapter-header h2 {
+    margin: 0;
+  }
+
+  .chapter-photos {
+    overflow-y: scroll;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    align-items: center;
+  }
+
+  .chapter-photo {
+    width: 700px;
+    height: 600px;
+    margin-bottom: 1rem;
+  }
+
+  .chapter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #A8EACE;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="chapter-container">
+  <div class="chapter-header">
+    <h2>Chapter <%= @chapter.chapter_number %>: <%= @chapter.chapter_title %></h2>
   </div>
-<% end %>
 
-<%= link_to 'Edit', edit_manga_chapter_path(@manga, @chapter) %> |
-<%= link_to 'Back', manga_chapters_path(@manga) %>
+  <% if @chapter.chapter_photos.attached? %>
+    <h3>Chapter Pages:</h3>
+    <div class="chapter-photos">
+      <% @chapter.chapter_photos.each do |photo| %>
+        <%= cl_image_tag photo.key, width: 500, height: 500, crop: :fill, alt: "Chapter Photo", class: "chapter-photo" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="chapter-actions">
+    <%= link_to 'Edit', edit_manga_chapter_path(@manga, @chapter), class: 'button' %> |
+    <%= link_to 'Back', manga_chapters_path(@manga), class: 'button' %>
+  </div>
+</div>
