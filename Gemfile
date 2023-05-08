@@ -33,9 +33,6 @@ gem "cloudinary"
 #faker gem
 gem "faker"
 
-#taggable gem
-gem "taggable"
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
