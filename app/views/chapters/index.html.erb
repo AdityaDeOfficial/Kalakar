@@ -1,3 +1,68 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+
+  th {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .new-chapter-btn,
+  .back-to-manga-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .new-chapter-btn:hover,
+  .back-to-manga-btn:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+  }
+</style>
+
 <h1>Chapters</h1>
 
 <table>
@@ -26,5 +91,5 @@
 
 <br>
 
-<%= link_to 'New Chapter', new_manga_chapter_path(@manga) %>
-<%= link_to 'Back to Manga', @manga %>
+<%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'new-chapter-btn' %>
+<%= link_to 'Back to Manga', @manga, class: 'back-to-manga-btn' %>

@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :mangas
   has_many :manga_reviews
+  has_many :chapter_reviews
 end
