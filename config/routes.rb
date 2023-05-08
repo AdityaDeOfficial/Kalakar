@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :mangas do
     resources :manga_reviews, only: [:create, :update, :destroy]
-    resources :chapters
+    resources :chapters do
+      resources :chapter_reviews, only: [:create, :update, :destroy]
+    end
   end
 
   resources :dashboard, only: [:index]
