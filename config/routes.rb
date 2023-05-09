@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :mangas do
+    member do
+      post 'favorite'
+      post 'unfavorite'
+    end
     resources :manga_reviews, only: [:create, :update, :destroy]
     resources :chapters do
       resources :chapter_reviews, only: [:create, :update, :destroy]

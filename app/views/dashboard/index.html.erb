@@ -38,6 +38,28 @@
       </div>
     <% end %>
 
+<h2>Your Bookmarked Mangas</h2>
+<div class="favorited-mangas">
+  <% if @favorited_mangas %>
+    <% @favorited_mangas.each do |manga| %>
+      <div class="favorited-manga">
+        <%= link_to manga_path(manga) do %>
+          <div class="favorited-manga-image">
+            <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title %>
+          </div>
+          <div class="favorited-manga-info">
+            <h3><%= manga.manga_title %></h3>
+            <p><%= manga.description %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You have not favorited any manga yet.</p>
+  <% end %>
+</div>
+
+
     <div class="dashboard-manga-buttons">
       <p><%= link_to 'Upload Manga', new_manga_path, class: 'dashboard-manga-button' %></p>
       <p><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dashboard-manga-button' %></p>

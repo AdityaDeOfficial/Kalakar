@@ -43,6 +43,18 @@ class MangasController < ApplicationController
     redirect_to root_path, notice: 'Manga was successfully destroyed.'
   end
 
+  def favorite
+    @manga = Manga.find(params[:id])
+    current_user.favorite(@manga)
+    redirect_to @manga, notice: 'Manga has been favorited.'
+  end
+
+  def unfavorite
+    @manga = Manga.find(params[:id])
+    current_user.unfavorite(@manga)
+    redirect_to @manga, notice: 'Manga has been unfavorited.'
+  end
+
   private
 
   def set_manga
