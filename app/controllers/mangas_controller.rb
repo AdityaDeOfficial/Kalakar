@@ -2,7 +2,11 @@ class MangasController < ApplicationController
   before_action :set_manga, only: [:show, :edit, :update, :destroy]
 
   def index
-    @mangas = Manga.all
+    if params[:search].present?
+      @mangas = Manga.search_by_title(params[:search])
+    else
+      @mangas = Manga.all
+    end
   end
 
   def show
