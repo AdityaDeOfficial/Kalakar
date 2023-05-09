@@ -165,6 +165,12 @@
   </div>
 </div>
 
+  <% if current_user.favorited?(@manga) %>
+    <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+  <% else %>
+    <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+  <% end %>
+
 <div class="chapters-section">
   <h2>Chapters</h2>
   <div class="chapters-list">
