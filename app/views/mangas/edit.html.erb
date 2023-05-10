@@ -62,6 +62,11 @@
       </div>
 
       <div class="field">
+        <%= form.label :tag_list, 'Tags (separated by commas)' %><br>
+        <%= form.text_field :tag_list, value: @manga.tag_list.join(", ") %>
+      </div>
+
+      <div class="field">
         <%= form.label :cover_image %>
         <%= form.file_field :cover_image %>
       </div>

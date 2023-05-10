@@ -162,6 +162,12 @@
     <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
     <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
     <p class="manga-user"><strong>User:</strong> <%= @manga.user.email %></p>
+    <p>
+      <strong>Tags:</strong>
+      <% @manga.tag_list.each do |tag| %>
+      <%= link_to tag, mangas_path(tag: tag) %>
+      <% end %>
+    </p>
   </div>
 </div>
 

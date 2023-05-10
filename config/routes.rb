@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post 'favorite'
       post 'unfavorite'
     end
+    get 'tags/:tag', to: 'mangas#index', as: :tag
     resources :manga_reviews, only: [:create, :update, :destroy]
     resources :chapters do
       resources :chapter_reviews, only: [:create, :update, :destroy]

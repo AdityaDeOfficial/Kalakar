@@ -2,12 +2,15 @@ class MangasController < ApplicationController
   before_action :set_manga, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
+    if params[:tag]
+      @mangas = Manga.tagged_with(params[:tag])
+    elsif params[:search].present?
       @mangas = Manga.search_by_title(params[:search])
     else
       @mangas = Manga.all
     end
   end
+
 
   def show
   end
@@ -62,6 +65,6 @@ class MangasController < ApplicationController
   end
 
   def manga_params
-    params.require(:manga).permit(:manga_title, :author, :description, :cover_image)
+    params.require(:manga).permit(:manga_title, :author, :description, :cover_image, :tag_list)
   end
 end
