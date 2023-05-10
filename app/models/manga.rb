@@ -13,6 +13,6 @@ class Manga < ApplicationRecord
                     tags: :name
                   },
                   using: {
-                    tsearch: { prefix: true } # assuming you want to search for partial words
+                    tsearch: { prefix: true }
                   }
 end

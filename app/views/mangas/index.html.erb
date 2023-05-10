@@ -108,7 +108,7 @@
   <% @mangas.each do |manga| %>
     <div class="manga-card">
       <% if manga.cover_image.attached? %>
-        <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title, class: "manga-cover" %>
+        <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title, class: "manga-cover", :quality => "auto", :fetch_format => "auto" %>
       <% else %>
         <div class="manga-cover">No cover image</div>
       <% end %>
@@ -117,8 +117,6 @@
       <p class="manga-description"><%= manga.description.truncate(50) %></p>
      <div class="manga-links">
         <%= link_to 'Show', manga %>
-        <%= link_to 'Edit', edit_manga_path(manga) %>
-        <%= link_to 'Destroy', manga_path(manga), method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     </div>
   <% end %>
