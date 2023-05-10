@@ -161,7 +161,6 @@
     <p class="manga-title"><strong>Title:</strong> <%= @manga.manga_title %></p>
     <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
     <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
-    <p class="manga-user"><strong>User:</strong> <%= @manga.user.email %></p>
     <p>
       <strong>Tags:</strong>
       <% @manga.tag_list.each do |tag| %>
@@ -171,11 +170,13 @@
   </div>
 </div>
 
-  <% if current_user.favorited?(@manga) %>
+ <div class="manga-bookmark" style="display: flex; justify-content: center; align-items: center">
+   <% if current_user.favorited?(@manga) %>
     <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
-  <% else %>
+   <% else %>
     <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
-  <% end %>
+   <% end %>
+ </div>
 
 <div class="chapters-section">
   <h2>Chapters</h2>
@@ -184,7 +185,6 @@
   </div>
 
   <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
-  <%= link_to 'Edit', edit_manga_path(@manga), class: 'button' %>
   <%= link_to 'Back', mangas_path, class: 'button' %>
 </div>
 
@@ -207,7 +207,7 @@
     </div>
     <div class="form-group">
       <%= form.label :rating, class: "form-label" %>
-      <%= form.select :rating, (1..5).to_a, required: true, class: "form-control" %>
+      <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
     </div>
     <div class="form-group">
       <%= form.submit "Submit Review", class: "submit-btn" %>
