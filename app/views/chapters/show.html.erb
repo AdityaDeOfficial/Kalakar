@@ -20,7 +20,7 @@
 
   .chapter-photos {
     overflow-y: scroll;
-    max-height: 600px;
+    max-height: 800px;
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
@@ -159,10 +159,9 @@ body {
   </div>
 
   <% if @chapter.chapter_photos.attached? %>
-    <h3>Chapter Pages:</h3>
     <div class="chapter-photos">
       <% @chapter.chapter_photos.each do |photo| %>
-        <%= cl_image_tag photo.key, width: 500, height: 500, crop: :fill, alt: "Chapter Photo", class: "chapter-photo" %>
+        <%= cl_image_tag photo.key, width: 500, height: 500, crop: :fill, alt: "Chapter Photo", class: "chapter-photo", :quality => "auto", :fetch_format => "auto" %>
       <% end %>
     </div>
   <% end %>

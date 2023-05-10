@@ -151,7 +151,7 @@
 <div class="manga-details">
   <div class="manga-cover">
     <% if @manga.cover_image.attached? %>
-      <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title %>
+      <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
     <% else %>
       <p>No cover image</p>
     <% end %>
