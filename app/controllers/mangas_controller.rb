@@ -5,7 +5,7 @@ class MangasController < ApplicationController
     if params[:tag]
       @mangas = Manga.tagged_with(params[:tag])
     elsif params[:search].present?
-      @mangas = Manga.search_by_title(params[:search])
+      @mangas = Manga.search_by_title_and_tags(params[:search])
     else
       @mangas = Manga.all
     end

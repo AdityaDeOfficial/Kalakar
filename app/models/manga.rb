@@ -7,5 +7,12 @@ class Manga < ApplicationRecord
   acts_as_taggable
 
   include PgSearch::Model
-  pg_search_scope :search_by_title, against: :manga_title, using: { tsearch: { prefix: true } }
+  pg_search_scope :search_by_title_and_tags,
+                  against: :manga_title,
+                  associated_against: {
+                    tags: :name
+                  },
+                  using: {
+                    tsearch: { prefix: true } # assuming you want to search for partial words
+                  }
 end
