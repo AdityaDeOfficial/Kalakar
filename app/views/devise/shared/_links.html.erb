@@ -3,11 +3,11 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <%= link_to "Sign up", new_registration_path(resource_name), class: "btn" %>
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn" %>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -23,3 +23,58 @@
     <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
   <% end %>
 <% end %>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+a, a:visited {
+  color: #f47521;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+a:hover {
+  color: #d8641d;
+}
+
+button {
+  background-color: #f47521;
+  color: #FFFFD2;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #d8641d;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #A8EACE;
+  color: #FFFFD2;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  max-width: 200px; /* Limit the width of the button */
+}
+
+.btn:hover {
+  background-color: #8dcdbb;
+}
+
+
+
+</style>
