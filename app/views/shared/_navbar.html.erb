@@ -12,7 +12,7 @@
       <div class="d-flex flex-row w-100 justify-content-between">
         <ul class="navbar-nav"></ul>
         <ul class="navbar-nav">
-          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
+          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form", "data-controller": "search", "data-action": "submit->search#submit", "data-target": "search.results" } do |form| %>
             <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2" %>
             <%= form.submit "Search", class: "btn btn-outline-primary" %>
           <% end %>
