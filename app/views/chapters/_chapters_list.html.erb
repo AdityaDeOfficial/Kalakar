@@ -32,6 +32,12 @@
 </style>
 
 <% chapters.each do |chapter| %>
+  <%= "Chapter #{chapter.chapter_number}: #{chapter.chapter_title}" %>
+<% end %>
+
+
+<%# ------------------------------- %>
+<% chapters.each do |chapter| %>
   <div class="chapter-item">
     <div class="chapter-title">
       <%= "Chapter #{chapter.chapter_number}: #{chapter.chapter_title}" %>
