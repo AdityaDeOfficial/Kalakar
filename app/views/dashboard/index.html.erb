@@ -25,7 +25,7 @@
               <div class="dashboard-manga-links">
                 <p><%= link_to 'Show', manga, class: 'dashboard-manga-link' %></p>
                 <p><%= link_to 'Edit', edit_manga_path(manga), class: 'dashboard-manga-link' %></p>
-                <p><%= link_to 'Destroy', manga_path(manga), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dashboard-manga-link' %></p>
+                <p><%= link_to 'Destroy', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'dashboard-manga-link' %></p>
               </div>
             </div>
           </div>

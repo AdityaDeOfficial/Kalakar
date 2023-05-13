@@ -42,8 +42,11 @@ class MangasController < ApplicationController
   end
 
   def destroy
-    @manga.destroy
-    redirect_to root_path, notice: 'Manga was successfully destroyed.'
+    if @manga.destroy
+      redirect_to root_path, notice: 'Manga was successfully destroyed.'
+    else
+      redirect_to @manga, alert: 'Failed to destroy manga.'
+    end
   end
 
   def favorite
