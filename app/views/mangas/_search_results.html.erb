@@ -1,7 +1,0 @@
-<%# creates new search partial, return responce with AJAX response %>
-
-<% @mangas.each do |manga| %>
-  <div class="manga">
-    <%= link_to manga.title, manga_path(manga) %>
-  </div>
-<% end %>
