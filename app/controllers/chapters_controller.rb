@@ -40,6 +40,7 @@ class ChaptersController < ApplicationController
     else
       redirect_to [@manga, @chapter], alert: 'Failed to destroy chapter.'
     end
+  end
 
   private
 

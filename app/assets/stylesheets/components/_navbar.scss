@@ -1,26 +1,32 @@
-// .navbar {
-//   font-family: 'Roboto', sans-serif;
-// }
-
-// .navbar-brand {
-//   font-weight: bold;
-// }
-
-// .nav-link {
-//   color: #232323;
-// }
-
-// .nav-link:hover {
-//   color: #ff6900;
-// }
-
-// .avatar {
-//   max-height: 40px;
-// }
-
-// .search-form {
-//   margin-right: 1rem;
-// }
 .hidden {
   display: none;
 }
+
+  .navbar {
+    font-family: 'Roboto', sans-serif;
+    color: #A8EACE;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .nav-link {
+    color: #A8EACE;
+  }
+
+  .nav-link:hover {
+    color: #ff6900;
+  }
+
+  .avatar {
+    max-height: 40px;
+  }
+
+  .search-form {
+    margin-right: 1rem;
+  }
+
+  .container-fluid {
+    color: #A8EACE;
+  }

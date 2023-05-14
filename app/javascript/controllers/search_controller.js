@@ -30,7 +30,7 @@ export default class extends Controller {
       .then(html => this.resultsTarget.innerHTML = html)
   }
 
-  //TODO popup below search bar
-  // populates suggestions as type
-  //remove search button
+  // TODO resolve JSON not parsing issue. Revisit Tuesday
+  // TODO auto suggested, popdown search
+  // TODO remove button
 }
