@@ -35,8 +35,11 @@ class ChaptersController < ApplicationController
   end
 
   def destroy
-    @chapter.destroy
-    redirect_to manga_chapters_url(@manga), notice: 'Chapter was successfully destroyed.'
+    if @chapter.destroy
+      redirect_to manga_chapters_url(@manga), notice: 'Chapter was successfully destroyed.'
+    else
+      redirect_to [@manga, @chapter], alert: 'Failed to destroy chapter.'
+    end
   end
 
   private

@@ -6,8 +6,16 @@ class MangasController < ApplicationController
       @mangas = Manga.tagged_with(params[:tag])
     elsif params[:search].present?
       @mangas = Manga.search_by_title_and_tags(params[:search])
+      respond_to do |format|
+        format.html
+        format.json { render json: @mangas }
+      end
     else
       @mangas = Manga.all
+      respond_to do |format|
+        format.html
+        format.json { render json: @mangas }
+      end
     end
   end
 
@@ -41,8 +49,11 @@ class MangasController < ApplicationController
   end
 
   def destroy
-    @manga.destroy
-    redirect_to dashboard_index_path, notice: 'Manga was successfully destroyed.'#, status: :see_other
+    if @manga.destroy
+      redirect_to root_path, notice: 'Manga was successfully destroyed.'
+    else
+      redirect_to @manga, alert: 'Failed to destroy manga.'
+    end
   end
 
   def favorite

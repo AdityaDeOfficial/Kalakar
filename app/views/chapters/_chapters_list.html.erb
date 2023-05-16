@@ -1,36 +1,3 @@
-<style>
-  .chapter-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding: 0.5rem 0;
-  }
-
-  .chapter-title {
-    font-size: 1.2rem;
-  }
-
-  .chapter-actions {
-    display: flex;
-    align-items: center;
-  }
-
-  .chapter-button {
-    display: inline-block;
-    background-color: #A8EACE;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.25rem 0.75rem;
-    border-radius: 3px;
-    margin: 0 0.25rem;
-  }
-
-  .chapter-button:hover {
-    background-color: #f90;
-  }
-</style>
-
 <% chapters.each do |chapter| %>
   <%= "Chapter #{chapter.chapter_number}: #{chapter.chapter_title}" %>
 <% end %>

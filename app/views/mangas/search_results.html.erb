@@ -1,0 +1,4 @@
+<%# TODO creates new search partial, return responce with AJAX response %>
+<% @mangas.each do |manga| %>
+  <%= render partial: "manga", locals: { manga: manga } %>
+<% end %>
