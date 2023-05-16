@@ -25,10 +25,15 @@
       <%= form.label :content %>
       <%= form.text_area "chapter_review[content]", required: true %>
     </div>
+
     <div>
       <%= form.label :rating %>
-      <%= form.select "chapter_review[rating]", (1..5).to_a, required: true %>
+      <% (1..5).each do |rating| %>
+        <%= form.radio_button "chapter_review[rating]", rating %>
+        <%= rating %> ★<br>
+      <% end %>
     </div>
+
     <div>
       <%= form.submit "Add Review" %>
     </div>
@@ -42,9 +47,9 @@
     <ul>
       <% @chapter.chapter_reviews.each do |review| %>
         <li>
-          <span class="user-email">User:</span> <%= review.user.email %> <br>
+          <span class="user-email">User:</span> <%= review.user.username %> <br>
           <strong>Content:</strong> <%= review.content %> <br>
-          <strong>Rating:</strong> <%= review.rating %>/5
+          <strong>Rating:</strong> <% (1..review.rating).each do %>★<% end %><% (review.rating+1..5).each do %>☆<% end %>
         </li>
       <% end %>
     </ul>
