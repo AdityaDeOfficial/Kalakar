@@ -1,67 +1,101 @@
-<div class="dashboard-container">
- <div class="dashboard-box">
-   <p class="dashboard-welcome">Welcome, <%= current_user.email %>!</p>
- </div>
+<div class="container">
+  <br>
+  <%# user avatar name and social media %>
+  <div class="border border-primary d-flex align-items-center">
 
- <div class="dashboard-manga-heading-container">
-   <h2 class="dashboard-manga-heading">Your Uploaded Mangas:</h2>
- </div>
+    <%# user avatar  %>
+    <div>
+      <% if current_user.avatar.present? %>
+        <i class="avatar-user border border-primary fa-solid fa-user"></i>
+      <% else %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar-user border border-primary" %>
+        <%# cloudinary upload %>
+        <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+    </div>
 
-    <% if @mangas.any? %>
-      <div class="dashboard-manga-grid">
+    <%# user social media/contact %>
+    <div class="border border-primary">
+      <h1><%= current_user.username %></h1>
+
+      <i class="fa-solid fa-envelope"></i>
+
+      <% if current_user.twitter.present? %>
+        <i class="fa-brands fa-twitter"></i>
+      <% end %>
+
+      <% if current_user.instagram.present? %>
+        <i class="fa-brands fa-instagram"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <%# user bio %>
+  <div class="border border-primary">
+    <p>Bio: <%= current_user.bio %></p>
+  </div>
+
+  <br>
+
+  <%# User Manga box %>
+  <div>
+
+    <%# My Manga title + manga_new_path %>
+    <div class="border border-primary d-flex justify-content-between align-items-end">
+      <h3>My Manga</h3>
+      <h4>Upload manga :D
+        <%= link_to new_manga_path do %>
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        <% end %>
+      </h4>
+    </div>
+    <hr>
+
+    <%# display all user mangas %>
+    <% if !@mangas.nil? %>
+      <div class="cards border border-primary">
         <% @mangas.each do |manga| %>
-          <div class="dashboard-manga-card">
-            <div class="dashboard-manga-image">
-              <% if manga.cover_image.attached? %>
-                <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title %>
-              <% else %>
-                <p>No cover image</p>
-              <% end %>
-            </div>
-            <div class="dashboard-manga-info">
-              <p class="dashboard-manga-title"><%= link_to manga.manga_title, manga %></p>
-              <p class="dashboard-manga-author"><%= manga.author %></p>
-              <p class="dashboard-manga-description"><%= manga.description.truncate(50) %></p>
-              <div class="dashboard-manga-links">
+          <div class="card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+            <% if manga.cover_image.attached? %>
+              <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+              <div class="dashboard-manga-links border border-primary">
                 <p><%= link_to 'Show', manga, class: 'dashboard-manga-link' %></p>
                 <p><%= link_to 'Edit', edit_manga_path(manga), class: 'dashboard-manga-link' %></p>
                 <p><%= link_to 'Destroy', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'dashboard-manga-link' %></p>
               </div>
-            </div>
+            <% else %>
+              <p>No cover image</p>
+            <% end %>
           </div>
         <% end %>
       </div>
     <% else %>
-      <div class="dashboard-manga-none">
-        <p>You haven't uploaded any mangas yet.</p>
-      </div>
+      <p>We can't wait to see your manga!</p>
     <% end %>
 
-<h2>Your Bookmarked Mangas</h2>
-<div class="favorited-mangas">
-  <% if @favorited_mangas %>
-    <% @favorited_mangas.each do |manga| %>
-      <div class="favorited-manga">
-        <%= link_to manga_path(manga) do %>
-          <div class="favorited-manga-image">
-            <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title %>
-          </div>
-          <div class="favorited-manga-info">
-            <h3><%= manga.manga_title %></h3>
-            <p><%= manga.description %></p>
+    <br>
+
+    <%# bookmark title%>
+    <div class="border border-primary d-flex justify-content-between align-items-end">
+      <h3>Bookmarked<i class="fa-solid fa-heart" style="color: #f39bd3;"></i></h3>
+      <h4>See all -></h4>
+    </div>
+    <hr>
+
+    <%# all user bookmark %>
+    <% if @favorited_mangas.present? %>
+      <div class="cards border border-primary">
+        <% @favorited_mangas.each do |manga| %>
+          <div class="card border border-primary" onclick="location.href='<%= manga_path(manga) %>'">
+            <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
           </div>
         <% end %>
       </div>
+    <% else %>
+      <p class="border border-primary">Start watching manga and bookmark them!</p>
     <% end %>
-  <% else %>
-    <p>You have not favorited any manga yet.</p>
-  <% end %>
-</div>
 
-
-    <div class="dashboard-manga-buttons">
-      <p><%= link_to 'Upload Manga', new_manga_path, class: 'dashboard-manga-button' %></p>
-      <p><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dashboard-manga-button' %></p>
-    </div>
+    <%# TODO:MARY - add top manga of the week etc %>
+    <%# <%= link_to "Hot Manga of this week", top_mangas_path %>
   </div>
 </div>

@@ -6,6 +6,9 @@ class Manga < ApplicationRecord
   acts_as_favoritable
   acts_as_taggable
 
+  validates :manga_title, presence: true
+  validates :description, presence: true
+
   include PgSearch::Model
   pg_search_scope :search_by_title_and_tags,
                   against: :manga_title,

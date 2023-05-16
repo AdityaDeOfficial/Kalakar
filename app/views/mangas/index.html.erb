@@ -1,23 +1,62 @@
-<div class="page-header">
-  <h1>Recently Added</h1>
-  <%# <%= link_to 'New Manga', new_manga_path, class: 'btn' %> <!-- Add the 'btn' class -->
-  <%# <%= link_to 'Go to Dashboard', dashboard_index_path, class: 'btn' %> <!-- Add the 'btn' class -->
+<%# manga genre ->css:_navabr %>
+<ul class="manga-genre-navbar border border-primary d-flex justify-content-around align-items-center">
+  <li class="border border-primary">Adventure</li>
+  <li>Fantasy</li>
+  <li>Sci-Fic</li>
+  <li>Romance</li>
+  <li>Supernatural</li>
+  <li>Historical</li>
+  <li>SuperHero</li>
+  <li>BL</li>
+  <li>GL</li>
+</ul>
+
+<div class="container">
+  <h1>Top & Popular Manga</h1>
+
+  <%# top mangas %>
+  <div class="cards">
+    <% @mangas.each do |manga| %>
+      <div class="card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+        <% if manga.cover_image.attached? %>
+          <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+        <% else %>
+          <p>No cover image</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="manga-container">
-  <% @mangas.each do |manga| %>
-    <div class="manga-card">
-      <% if manga.cover_image.attached? %>
-        <%= cl_image_tag manga.cover_image.key, width: 180, height: 270, crop: :fill, alt: manga.manga_title, class: "manga-cover", :quality => "auto", :fetch_format => "auto" %>
-      <% else %>
-        <div class="manga-cover">No cover image</div>
-      <% end %>
-      <p class="manga-title"><%= link_to manga.manga_title, manga %></p>
-      <p class="manga-author"><%= manga.author %></p>
-      <p class="manga-description"><%= manga.description.truncate(50) %></p>
-     <div class="manga-links">
-        <%= link_to 'Show', manga %>
-      </div>
-    </div>
-  <% end %>
-</div>
+
+<%# ------------------------------------------------------------ %>
+<style>
+  .manga-links a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #A8EACE;
+    border: 1px solid #A8EACE;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+
+    /* Add styles for the buttons */
+  .btn {
+    color: #fff;
+    text-decoration: none;
+    background-color: #A8EACE;
+    border: 1px solid #A8EACE;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+</style>

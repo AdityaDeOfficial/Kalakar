@@ -19,7 +19,6 @@ class MangasController < ApplicationController
     end
   end
 
-
   def show
   end
 

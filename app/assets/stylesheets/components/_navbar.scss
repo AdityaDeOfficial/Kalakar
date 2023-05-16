@@ -15,18 +15,33 @@
     color: #A8EACE;
   }
 
-  .nav-link:hover {
-    color: #ff6900;
-  }
+//   .nav-link:hover {
+//     color: #ff6900;
+//   }
 
-  .avatar {
-    max-height: 40px;
-  }
+//   .avatar {
+//     max-height: 40px;
+//   }
 
-  .search-form {
-    margin-right: 1rem;
-  }
+//   .container-fluid {
+//     color: #A8EACE;
+//   }
 
-  .container-fluid {
-    color: #A8EACE;
-  }
+// .search-form {
+//   margin-right: 1rem;
+// }
+
+
+// -----------------------above code is from system/le wagon default setting
+// below is Mary's code
+
+.manga-genre-navbar{
+  background-color: #CEFFEA;
+  font-weight: bold;
+  height: 36px;
+  font-size: 1.2em;
+}
+
+li {
+  list-style: none;
+}

@@ -1,32 +1,38 @@
-<div class="manga-details">
-  <div class="manga-cover">
-    <% if @manga.cover_image.attached? %>
-      <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
-    <% else %>
-      <p>No cover image</p>
-    <% end %>
-  </div>
-
-  <div class="manga-info">
-    <p class="manga-title"><strong>Title:</strong> <%= @manga.manga_title %></p>
-    <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
-    <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
-    <p>
-      <strong>Tags:</strong>
-      <% @manga.tag_list.each do |tag| %>
-      <%= link_to tag, mangas_path(tag: tag) %>
-      <% end %>
-    </p>
-  </div>
+<%# manga cover image %>
+<div>
+  <% if @manga.cover_image.attached? %>
+    <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+  <% else %>
+    <p>No cover image</p>
+  <% end %>
 </div>
 
- <div class="manga-bookmark" style="display: flex; justify-content: center; align-items: center">
-   <% if current_user.favorited?(@manga) %>
-    <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
-   <% else %>
-    <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
-   <% end %>
- </div>
+<%# manga info %>
+<p><strong>Title:</strong> <%= @manga.manga_title %></p>
+<p><strong>Author:</strong> <%= @manga.author %></p>  <%# TODO: Mary - change to username%>
+<p><strong>Description:</strong> <%= @manga.description %></p>
+
+<%# tag %>
+<p>
+  <strong>Tags:</strong>
+  <% @manga.tag_list.each do |tag| %>
+  <%= link_to tag, mangas_path(tag: tag) %>
+  <% end %>
+</p>
+
+<%# bookmark %>
+<% if current_user.favorited?(@manga) %>
+  <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+<% else %>
+  <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+<% end %>
+
+<%# render chapters from chapter controller %>
+<%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+
+
+
+<%# ------------------------------------------- %>
 
 <div class="chapters-section">
   <h2>Chapters</h2>
@@ -64,3 +70,153 @@
     </div>
   <% end %>
 </div>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .manga-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .manga-cover img {
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .manga-info {
+    max-width: 350px;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .manga-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-author {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-description {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-user {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .chapters-section {
+    text-align: center;
+    margin-top: 2rem;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chapters-list {
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: #A8EACE;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    margin: 0 0.5rem;
+  }
+
+  .button:hover {
+    background-color: #f90;
+  }
+
+  .review-section {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.review-title,
+.add-review-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.review {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-author {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.review-content {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-rating {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.add-review-form {
+  margin-top: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.submit-btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #ffc107;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.
+}
+</style>
