@@ -10,20 +10,26 @@ export default class extends Controller {
 
   async search_manga() {
     const query = this.queryTarget.value
-    fetch(`/mangas?search=${query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    } )
+    fetch(`/mangas?search=${query}`)
     .then(response => response.json())
-    .then(data => console.log(data))
-    // console.log(query)
+    .then(data => {
+      this.resultsTarget.innerHTML = data.map(manga => `
+        <li>${manga.title}</li>
+      `).join("")
+      this.resultsTarget.classList.remove("hidden")
+    })
     .catch(error => {
       // Handle any errors
       console.error(error);
     });
   }
+}
+
+  // TODO
+
+  // grab the object
+  // inject in html
+  // AJAX stuff happens from here
 
   // submit_manga(event) {
   //   event.preventDefault()
