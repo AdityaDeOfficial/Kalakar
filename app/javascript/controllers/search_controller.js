@@ -18,17 +18,21 @@ export default class extends Controller {
     } )
     .then(response => response.json())
     .then(data => console.log(data))
-    console.log(query)
+    // console.log(query)
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
   }
 
-  submit_manga(event) {
-    event.preventDefault()
-    console.log("working")
-    const query = this.queryTarget.value
-    fetch(`/mangas?search=${query}`)
-      .then(response => response.text())
-      .then(html => this.resultsTarget.innerHTML = html)
-  }
+  // submit_manga(event) {
+  //   event.preventDefault()
+  //   console.log("working")
+  //   const query = this.queryTarget.value
+  //   fetch(`/mangas?search=${query}`)
+  //     .then(response => response.text())
+  //     .then(html => this.resultsTarget.innerHTML = html)
+  // }
 
   // TODO resolve JSON not parsing issue. Revisit Tuesday
   // TODO auto suggested, popdown search

@@ -8,13 +8,13 @@ class MangasController < ApplicationController
       @mangas = Manga.search_by_title_and_tags(params[:search])
       respond_to do |format|
         format.html
-        format.json { render json: @mangas }
+        format.json { render json: Jbuilder.new { |json| json.array! @mangas, :title }.target! }
       end
     else
       @mangas = Manga.all
       respond_to do |format|
         format.html
-        format.json { render json: @mangas }
+        format.json { render json: Jbuilder.new { |json| json.array! @mangas, :title }.target! }
       end
     end
   end

@@ -14,7 +14,8 @@
         <ul class="navbar-nav">
           <ul class="navbar-nav">
             <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
-              <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { target: "search.query", action: "keyup->search#search_manga" } %>
+              <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { target: "search.query",
+              action: "keyup->search#search_manga" } %>
               <%= form.submit "Search", class: "btn btn-outline-primary" %>
             <% end %>
           </ul>
@@ -93,4 +94,3 @@
     color: #A8EACE;
   }
 </style> %>
-
