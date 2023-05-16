@@ -11,7 +11,6 @@ class MangasController < ApplicationController
     end
   end
 
-
   def show
   end
 
@@ -43,7 +42,7 @@ class MangasController < ApplicationController
 
   def destroy
     @manga.destroy
-    redirect_to root_path, notice: 'Manga was successfully destroyed.'
+    redirect_to dashboard_index_path, notice: 'Manga was successfully destroyed.'#, status: :see_other
   end
 
   def favorite

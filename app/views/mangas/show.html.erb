@@ -1,3 +1,76 @@
+<%# manga cover image %>
+<div>
+  <% if @manga.cover_image.attached? %>
+    <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+  <% else %>
+    <p>No cover image</p>
+  <% end %>
+</div>
+
+<%# manga info %>
+<p><strong>Title:</strong> <%= @manga.manga_title %></p>
+<p><strong>Author:</strong> <%= @manga.author %></p>  <%# TODO: Mary - change to username%>
+<p><strong>Description:</strong> <%= @manga.description %></p>
+
+<%# tag %>
+<p>
+  <strong>Tags:</strong>
+  <% @manga.tag_list.each do |tag| %>
+  <%= link_to tag, mangas_path(tag: tag) %>
+  <% end %>
+</p>
+
+<%# bookmark %>
+<% if current_user.favorited?(@manga) %>
+  <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+<% else %>
+  <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+<% end %>
+
+<%# render chapters from chapter controller %>
+<%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+
+
+
+<%# ------------------------------------------- %>
+
+<div class="chapters-section">
+  <h2>Chapters</h2>
+  <div class="chapters-list">
+    <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+  </div>
+
+  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
+  <%= link_to 'Back', mangas_path, class: 'button' %>
+</div>
+
+<div class="review-section">
+  <h2 class="review-title">Manga Reviews</h2>
+  <% @manga.manga_reviews.each do |manga_review| %>
+    <div class="review">
+      <strong class="review-author"><%= manga_review.user.email %>:</strong>
+      <p class="review-content"><%= manga_review.content %></p>
+      <p class="review-rating">Rating: <%= manga_review.rating %></p>
+    </div>
+  <% end %>
+
+  <!-- Add a new review -->
+  <h2 class="add-review-title">Add a manga review</h2>
+  <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
+    <div class="form-group">
+      <%= form.label :content, class: "form-label" %>
+      <%= form.text_area :content, required: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :rating, class: "form-label" %>
+      <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
+    </div>
+    <div class="form-group">
+      <%= form.submit "Submit Review", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -147,70 +220,3 @@
   border-radius: 0.
 }
 </style>
-
-<div class="manga-details">
-  <div class="manga-cover">
-    <% if @manga.cover_image.attached? %>
-      <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
-    <% else %>
-      <p>No cover image</p>
-    <% end %>
-  </div>
-
-  <div class="manga-info">
-    <p class="manga-title"><strong>Title:</strong> <%= @manga.manga_title %></p>
-    <p class="manga-author"><strong>Author:</strong> <%= @manga.author %></p>
-    <p class="manga-description"><strong>Description:</strong> <%= @manga.description %></p>
-    <p>
-      <strong>Tags:</strong>
-      <% @manga.tag_list.each do |tag| %>
-      <%= link_to tag, mangas_path(tag: tag) %>
-      <% end %>
-    </p>
-  </div>
-</div>
-
- <div class="manga-bookmark" style="display: flex; justify-content: center; align-items: center">
-   <% if current_user.favorited?(@manga) %>
-    <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
-   <% else %>
-    <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
-   <% end %>
- </div>
-
-<div class="chapters-section">
-  <h2>Chapters</h2>
-  <div class="chapters-list">
-    <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
-  </div>
-
-  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
-  <%= link_to 'Back', mangas_path, class: 'button' %>
-</div>
-
-<div class="review-section">
-  <h2 class="review-title">Manga Reviews</h2>
-  <% @manga.manga_reviews.each do |manga_review| %>
-    <div class="review">
-      <strong class="review-author"><%= manga_review.user.email %>:</strong>
-      <p class="review-content"><%= manga_review.content %></p>
-      <p class="review-rating">Rating: <%= manga_review.rating %></p>
-    </div>
-  <% end %>
-
-  <!-- Add a new review -->
-  <h2 class="add-review-title">Add a manga review</h2>
-  <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
-    <div class="form-group">
-      <%= form.label :content, class: "form-label" %>
-      <%= form.text_area :content, required: true, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= form.label :rating, class: "form-label" %>
-      <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
-    </div>
-    <div class="form-group">
-      <%= form.submit "Submit Review", class: "submit-btn" %>
-    </div>
-  <% end %>
-</div>
