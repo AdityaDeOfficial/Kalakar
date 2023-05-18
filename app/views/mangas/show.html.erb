@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container border border-primary">
 <%# class="border border-primary" %>
   <%# manga cover image %>
   <div class="d-flex border border-primary mx-4">
@@ -13,9 +13,9 @@
     <div class="border border-primary">
       <%# manga info %>
       <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
-      <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: Mary - change to username%>
+      <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: able to link the author name to the user dashboard %>
+      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3>%>
       <h1>Description:<%= @manga.description %></h1>
-      <h3><%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) %></h3>
 
       <%# tag %>
       <div class="d-flex border border-primary">
@@ -43,7 +43,7 @@
 <%# ------------------------------------------- %>
 
 <div class="chapters-section">
-  <h2>Chapters</h2>
+  <h2>Chapters Aditya</h2>
   <div class="chapters-list">
     <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
   </div>
@@ -63,18 +63,22 @@
   <% end %>
 
   <!-- Add a new review -->
-  <h2 class="add-review-title">Add a manga review</h2>
+  <h2>Add a manga review</h2>
+  <%# render review form %>
   <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
+    <%# content %>
     <div class="form-group">
       <%= form.label :content, class: "form-label" %>
       <%= form.text_area :content, required: true, class: "form-control" %>
     </div>
+    <%# rating %>
     <div class="form-group">
       <%= form.label :rating, class: "form-label" %>
       <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
     </div>
+    <%# submit button %>
     <div class="form-group">
-      <%= form.submit "Submit Review", class: "submit-btn" %>
+      <%= form.submit "Submit Review", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

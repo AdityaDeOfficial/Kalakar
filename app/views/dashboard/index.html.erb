@@ -53,9 +53,9 @@
 
     <%# display all user mangas %>
     <% if !@mangas.nil? %>
-      <div class="cards border border-primary">
+      <div class="manga-cards border border-primary">
         <% @mangas.each do |manga| %>
-          <div class="card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+          <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
             <% if manga.cover_image.attached? %>
               <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
               <div class="dashboard-manga-links border border-primary">
@@ -64,7 +64,7 @@
                 <p><%= link_to 'Destroy', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'dashboard-manga-link' %></p>
               </div>
             <% else %>
-              <p>No cover image</p>
+              <p><%= manga.manga_title %></p>
             <% end %>
           </div>
         <% end %>
@@ -84,10 +84,14 @@
 
     <%# all user bookmark %>
     <% if @favorited_mangas.present? %>
-      <div class="cards border border-primary">
+      <div class="manga-cards border border-primary">
         <% @favorited_mangas.each do |manga| %>
-          <div class="card border border-primary" onclick="location.href='<%= manga_path(manga) %>'">
-            <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+          <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+            <% if manga.cover_image.attached? %>
+              <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+            <% else %>
+              <p><%= manga.manga_title %></p>
+            <% end %>
           </div>
         <% end %>
       </div>

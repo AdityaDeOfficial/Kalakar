@@ -1,23 +1,23 @@
 <%# manga genre ->css:_navabr %>
 <ul class="manga-genre-navbar border border-primary d-flex justify-content-around align-items-center">
-  <li class="border border-primary" data-text="Adventure">Adventure</li>
-  <li data-text="Fantasy">Fantasy</li>
-  <li data-text="Sci-Fic">Sci-Fic</li>
-  <li data-text="Romance">Romance</li>
-  <li data-text="Supernatural">Supernatural</li>
-  <li data-text="Historical">Historical</li>
-  <li data-text="SuperHero">SuperHero</li>
-  <li data-text="BL">BL</li>
-  <li class="border border-primary" data-text="GL">GL</li>
+  <li class="border border-primary">Adventure</li>
+  <li>Fantasy</li>
+  <li>Sci-Fic</li>
+  <li>Romance</li>
+  <li>Supernatural</li>
+  <li>Historical</li>
+  <li>SuperHero</li>
+  <li>BL</li>
+  <li>GL</li>
 </ul>
 
 <div class="m-4">
   <h1>Top & Popular Manga</h1>
 
   <%# top mangas %>
-  <div class="cards">
+  <div class="manga-cards">
     <% @mangas.each do |manga| %>
-      <div class="card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+      <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
         <% if manga.cover_image.attached? %>
           <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
         <% else %>
