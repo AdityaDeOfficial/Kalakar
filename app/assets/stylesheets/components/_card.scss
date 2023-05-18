@@ -14,8 +14,8 @@
   justify-content: center;
   align-content: center;
   padding: 20px;
-  height: 40vh;
-  width: 15vw;
+  height: 250px;
+  width: 180px;
   border-radius: 5px;
   box-shadow: 0 0 16px rgba(0,0,0,0.2);
   cursor: pointer;
@@ -24,4 +24,18 @@
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+// manga cover image
+.manga-cover-image {
+  height: 380px;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  text-decoration: none;
+  background-color: #A8EACE;
+  color: black;
 }

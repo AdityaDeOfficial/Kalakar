@@ -3,48 +3,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.manga-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-}
-
-.manga-cover img {
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.manga-info {
-  max-width: 350px;
-  padding: 1rem;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.manga-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.manga-author {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.manga-description {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.manga-user {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
 .chapters-section {
   text-align: center;
   margin-top: 2rem;

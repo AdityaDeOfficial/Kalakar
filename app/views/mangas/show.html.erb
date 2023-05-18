@@ -1,35 +1,43 @@
-<%# manga cover image %>
-<div>
-  <% if @manga.cover_image.attached? %>
-    <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
-  <% else %>
-    <p>No cover image</p>
-  <% end %>
-</div>
+<div class="container">
+<%# class="border border-primary" %>
+  <%# manga cover image %>
+  <div class="d-flex border border-primary mx-4">
+    <div class="manga-cover-image  border border-success">
+      <% if @manga.cover_image.attached? %>
+        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+      <% else %>
+        <p>No cover image</p>
+      <% end %>
+    </div>
 
-<%# manga info %>
-<p><strong>Title:</strong> <%= @manga.manga_title %></p>
-<p><strong>Author:</strong> <%= @manga.author %></p>  <%# TODO: Mary - change to username%>
-<p><strong>Description:</strong> <%= @manga.description %></p>
+    <div class="border border-primary">
+      <%# manga info %>
+      <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
+      <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: Mary - change to username%>
+      <h1>Description:<%= @manga.description %></h1>
+      <h3><%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) %></h3>
 
-<%# tag %>
-<p>
-  <strong>Tags:</strong>
-  <% @manga.tag_list.each do |tag| %>
-  <%= link_to tag, mangas_path(tag: tag) %>
-  <% end %>
-</p>
+      <%# tag %>
+      <div class="d-flex border border-primary">
+        <% @manga.tag_list.each do |tag| %>
+          <div class="border border-primary badge rounded-pill">
+            <%= link_to tag, mangas_path(tag: tag) %>
+          </div>
+        <% end %>
+      </div>
 
-<%# bookmark %>
-<% if current_user.favorited?(@manga) %>
-  <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
-<% else %>
-  <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
-<% end %>
+      <%# bookmark %>
+      <% if current_user.favorited?(@manga) %>
+        <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+      <% else %>
+        <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 
-<%# render chapters from chapter controller %>
-<%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
-
+  <%# render chapters from chapter controller %>
+  <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+  </div>
 
 
 <%# ------------------------------------------- %>
