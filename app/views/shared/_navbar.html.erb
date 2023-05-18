@@ -1,4 +1,9 @@
 <div class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container" id="results" data-controller="search">
+    <!-- Testing JSON injection results here -->
+    <div data-target="search.results">
+  </div>
+
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "brand_logoo.jpg", class: "img-fluid", style: "max-height: 40px;" %>
@@ -8,7 +13,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-controller="search">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+          </div>
       <div class="d-flex flex-row w-100 justify-content-between">
       <%# search bar??? %>
         <ul class="navbar-nav">

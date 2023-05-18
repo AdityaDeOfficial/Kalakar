@@ -5,6 +5,7 @@
   .navbar {
     font-family: 'Roboto', sans-serif;
     color: #A8EACE;
+    position: relative;
   }
 
   .navbar-brand {
@@ -14,6 +15,14 @@
   .nav-link {
     color: #A8EACE;
   }
+
+  .navbar h3 {color: black;
+    position: absolute;
+    bottom: -26px;
+  }
+
+
+
 
 //   .nav-link:hover {
 //     color: #ff6900;

@@ -6,13 +6,8 @@ class MangasController < ApplicationController
       @mangas = Manga.tagged_with(params[:tag])
     elsif params[:search].present?
       @mangas = Manga.search_by_title_and_tags(params[:search])
-      render json: @mangas, content_type: 'application/json'
     else
       @mangas = Manga.all
-      respond_to do |format|
-        format.html
-        format.json { render json: Jbuilder.new { |json| json.array! @mangas, :title }.target! }
-      end
     end
   end
 

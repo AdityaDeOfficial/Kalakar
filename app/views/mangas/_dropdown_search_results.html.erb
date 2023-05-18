@@ -1,0 +1,11 @@
+<%= turbo_frame_tag :dropdown_search_results, target: :_top do %>
+  <div style="background: white; padding: 10px; border: 1px solid black;">
+    <ul>
+      <% results.each do |manga| %>
+        <li>
+          <%= link_to manga.manga_title, manga_path(manga) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

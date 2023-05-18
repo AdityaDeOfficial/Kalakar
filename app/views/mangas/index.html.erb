@@ -1,4 +1,5 @@
 <%# manga genre ->css:_navabr %>
+<div>
 <ul class="manga-genre-navbar border border-primary d-flex justify-content-around align-items-center">
   <li class="border border-primary">Adventure</li>
   <li>Fantasy</li>
@@ -10,13 +11,15 @@
   <li>BL</li>
   <li>GL</li>
 </ul>
+</div>
 
-<div class="container" data-controller="search">
-    <!-- Testing JSON injection results here -->
-    <div data-target="search.results">
-    <h3>AJAX test</h3>
-    </div>
-    <!-- Testing JSON injection results here -->
+<%= form_with url: mangas_path, method: :get, html: { class: "d-flex search-form" }, data: {turbo_frame: :dropdown_search_results} do |form| %>
+  <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
+  <%= form.submit "Search", class: "btn btn-outline-primary" %>
+<% end %>
+
+<%# dropdown search partial contains turbo_frame_tag with id of 'dropdown_search_results' %>
+<%= render 'mangas/dropdown_search_results', results: @mangas %>
 
   <h1>Top & Popular Manga</h1>
 
