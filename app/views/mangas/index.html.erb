@@ -11,7 +11,13 @@
   <li>GL</li>
 </ul>
 
-<div class="container">
+<div class="container" data-controller="search">
+    <!-- Testing JSON injection results here -->
+    <div data-target="search.results">
+    <h3>AJAX test</h3>
+    </div>
+    <!-- Testing JSON injection results here -->
+
   <h1>Top & Popular Manga</h1>
 
   <%# top mangas %>
@@ -27,7 +33,6 @@
     <% end %>
   </div>
 </div>
-
 
 <%# ------------------------------------------------------------ %>
 <style>

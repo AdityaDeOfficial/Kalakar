@@ -8,15 +8,28 @@ export default class extends Controller {
     this.resultsTarget.classList.add("hidden")
   }
 
+  displayResults(data_name) {
+    debugger
+    // clear previous results
+    this.resultsTarget.innerHTML = '';
+    this.resultsTarget.insertAdjacentHTML('afterbegin', `<h3>${data_name}</h3`)
+   // Loop through the array of objects and append each one to the results target
+
+    const resultElement = document.createElement('div');
+    resultElement.textContent = JSON.stringify(result); // Convert the object to JSON string
+
+    this.resultsTarget.appendChild(resultElement);
+  };
+
   async search_manga() {
     const query = this.queryTarget.value
     fetch(`/mangas?search=${query}`)
     .then(response => response.json())
     .then(data => {
-      this.resultsTarget.innerHTML = data.map(manga => `
-        <li>${manga.title}</li>
-      `).join("")
-      this.resultsTarget.classList.remove("hidden")
+      data.forEach(object => {
+        //console.log(object.manga_title);
+        this.displayResults(object.manga_title)
+      });
     })
     .catch(error => {
       // Handle any errors
@@ -25,22 +38,8 @@ export default class extends Controller {
   }
 }
 
+
   // TODO
 
-  // grab the object
-  // inject in html
-  // AJAX stuff happens from here
-
-  // submit_manga(event) {
-  //   event.preventDefault()
-  //   console.log("working")
-  //   const query = this.queryTarget.value
-  //   fetch(`/mangas?search=${query}`)
-  //     .then(response => response.text())
-  //     .then(html => this.resultsTarget.innerHTML = html)
-  // }
-
-  // TODO resolve JSON not parsing issue. Revisit Tuesday
-  // TODO auto suggested, popdown search
-  // TODO remove button
-}
+  // grab the object, inject in html - if auto suggest works then..
+  // ..AJAX popup in the search bar
