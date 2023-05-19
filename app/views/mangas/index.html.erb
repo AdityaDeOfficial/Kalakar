@@ -13,14 +13,17 @@
 </ul>
 </div>
 
-<div class="container-search">
-  <div class="d-flex flex-row w-100 justify-content-space-evenly">
-    <%= form_with url: mangas_path, method: :get, html: { class: "d-flex search-form " }, data: {turbo_frame: :dropdown_search_results} do |form| %>
-      <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
-      <%= form.submit "Search", class: "btn btn-outline-primary" %>
-    <% end %>
-  </div>
+<div class="container">
+  <%= form_with url: mangas_path, method: :get, data: { turbo_frame: :dropdown_search_results } do |form| %>
+    <div class="search-input">
+      <%= form.text_field :search, placeholder: "Search Manga", class: "search-form", data: { controller: 'search', action: 'keyup->search#submitForm' } %>
+      <button type="submit" class="search-button">
+        <i class="fa-solid fa-search"></i>
+      </button>
+    </div>
+  <% end %>
 </div>
+
 <%# dropdown search partial contains turbo_frame_tag with id of 'dropdown_search_results' %>
 <%= render 'mangas/dropdown_search_results', results: @mangas %>
 
