@@ -13,11 +13,14 @@
 </ul>
 </div>
 
-<%= form_with url: mangas_path, method: :get, html: { class: "d-flex search-form" }, data: {turbo_frame: :dropdown_search_results} do |form| %>
-  <%= form.text_field :search, placeholder: "Search Manga (everything)", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
-  <%#= form.submit "Search", class: "btn btn-outline-primary" %>
-<% end %>
-
+<div class="container-search">
+  <div class="d-flex flex-row w-100 justify-content-space-evenly">
+    <%= form_with url: mangas_path, method: :get, html: { class: "d-flex search-form " }, data: {turbo_frame: :dropdown_search_results} do |form| %>
+      <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
+      <%= form.submit "Search", class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
+</div>
 <%# dropdown search partial contains turbo_frame_tag with id of 'dropdown_search_results' %>
 <%= render 'mangas/dropdown_search_results', results: @mangas %>
 
@@ -36,35 +39,3 @@
     <% end %>
   </div>
 </div>
-
-<%# ------------------------------------------------------------ %>
-<style>
-  .manga-links a {
-    color: #fff;
-    text-decoration: none;
-    background-color: #A8EACE;
-    border: 1px solid #A8EACE;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  }
-
-
-    /* Add styles for the buttons */
-  .btn {
-    color: #fff;
-    text-decoration: none;
-    background-color: #A8EACE;
-    border: 1px solid #A8EACE;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  }
-
-  .btn:hover {
-    text-decoration: none;
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-</style>

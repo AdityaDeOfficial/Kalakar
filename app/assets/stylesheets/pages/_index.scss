@@ -1,2 +1,40 @@
 // Import page-specific CSS files here.
 @import "home";
+
+    /* Add styles for the buttons */
+    .manga-links a {
+      color: #fff;
+      text-decoration: none;
+      background-color: #A8EACE;
+      border: 1px solid #A8EACE;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn {
+      color: #fff;
+      text-decoration: none;
+      background-color: #A8EACE;
+      border: 1px solid #A8EACE;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .container-search {
+      --bs-gutter-x: 60rem;
+      --bs-gutter-y: 0;
+      width: 100%;
+      padding-right: calc(var(--bs-gutter-x) * .5);
+      padding-left: calc(var(--bs-gutter-x) * .5);
+      margin-right: auto;
+      margin-left: auto;
+    }
