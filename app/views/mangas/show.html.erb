@@ -47,9 +47,9 @@
         <%# user avatar %>
         <div>
           <% if current_user.avatar.present? %>
-            <i class="avatar-user border border-primary fa-solid fa-user"></i>
+            <i class="avatar border border-primary fa-solid fa-user"></i>
           <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar-user border border-primary" %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar border border-primary" %>
             <%# cloudinary upload %>
             <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %> <%# TODO: make avatar work%>
           <% end %>
