@@ -10,7 +10,7 @@
       <% end %>
     </div>
 
-    <div class="border border-primary">
+    <div class="border border-primary ps-3">
       <%# manga info %>
       <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
       <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: able to link the author name to the user dashboard %>
@@ -18,7 +18,7 @@
       <h1>Description:<%= @manga.description %></h1>
 
       <%# tag %>
-      <div class="d-flex border border-primary">
+      <div class="d-flex border border-primary gap-1">
         <% @manga.tag_list.each do |tag| %>
           <div class="border border-primary badge rounded-pill">
             <%= link_to tag, mangas_path(tag: tag) %>
@@ -37,198 +37,64 @@
 
   <%# render chapters from chapter controller %>
   <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
+
+
+  <%# Manga Review %>
+  <h2>Manga Reviews</h2>
+   <%# add a new manga review %>
+    <div>
+      <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
+        <%# user avatar %>
+        <div>
+          <% if current_user.avatar.present? %>
+            <i class="avatar-user border border-primary fa-solid fa-user"></i>
+          <% else %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar-user border border-primary" %>
+            <%# cloudinary upload %>
+            <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %> <%# TODO: make avatar work%>
+          <% end %>
+        </div>
+        <%# content %>
+        <div class="form-group">
+          <%= form.label :content, class: "form-label" %>
+          <%= form.text_area :content, required: true, class: "form-control", placeholder:"leave a comment!" %>
+        </div>
+        <%# rating %>
+        <div class="form-group">
+          <%= form.label :rating, class: "form-label" %>
+          <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
+        </div>
+        <%# submit button %>
+        <div class="form-group">
+          <%= form.submit "Submit Review", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="d-flex border flex-column border-primary">
+    <%# each manga review %>
+    <% if @manga.manga_reviews.present? %>
+      <% @manga.manga_reviews.each do |manga_review| %>
+        <div class="border border-primary">
+          <p class="border border-primary"><%#<%= manga_review.user.username: TODO: not sure why its not working TUT%>
+          <i class="border border-primary fa-regular fa-star"></i></p>
+          <p class="border border-primary"><%= manga_review.content %></p>
+          <%# <p class="border border-primary">Rating: <%= manga_review.rating </p> %>
+
+          <div class="d-flex border border-primary">
+            <i class="border border-primary fa-regular fa-thumbs-up"></i>
+            <p class="border border-primary">Reply</p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>leave a comment!</p>
+    <% end %>
+
   </div>
 
 
-<%# ------------------------------------------- %>
+  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary' %>
+  <%= link_to 'Back', mangas_path, class: 'btn btn-primary' %>
 
-<div class="chapters-section">
-  <h2>Chapters Aditya</h2>
-  <div class="chapters-list">
-    <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
-  </div>
-
-  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
-  <%= link_to 'Back', mangas_path, class: 'button' %>
 </div>
-
-<div class="review-section">
-  <h2 class="review-title">Manga Reviews</h2>
-  <% @manga.manga_reviews.each do |manga_review| %>
-    <div class="review">
-      <strong class="review-author"><%= manga_review.user.email %>:</strong>
-      <p class="review-content"><%= manga_review.content %></p>
-      <p class="review-rating">Rating: <%= manga_review.rating %></p>
-    </div>
-  <% end %>
-
-  <!-- Add a new review -->
-  <h2>Add a manga review</h2>
-  <%# render review form %>
-  <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
-    <%# content %>
-    <div class="form-group">
-      <%= form.label :content, class: "form-label" %>
-      <%= form.text_area :content, required: true, class: "form-control" %>
-    </div>
-    <%# rating %>
-    <div class="form-group">
-      <%= form.label :rating, class: "form-label" %>
-      <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
-    </div>
-    <%# submit button %>
-    <div class="form-group">
-      <%= form.submit "Submit Review", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
-
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-
-  .manga-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 2rem;
-  }
-
-  .manga-cover img {
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .manga-info {
-    max-width: 350px;
-    padding: 1rem;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .manga-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  .manga-author {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .manga-description {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .manga-user {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .chapters-section {
-    text-align: center;
-    margin-top: 2rem;
-    background-color: #f2f2f2;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .chapters-list {
-    margin-bottom: 1rem;
-  }
-
-  .button {
-    display: inline-block;
-    background-color: #A8EACE;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 3px;
-    margin: 0 0.5rem;
-  }
-
-  .button:hover {
-    background-color: #f90;
-  }
-
-  .review-section {
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-}
-
-.review-title,
-.add-review-title {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.review {
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.review-author {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.review-content {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.review-rating {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.add-review-form {
-  margin-top: 1rem;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-}
-
-.submit-btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #ffc107;
-  border: 1px solid transparent;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.
-}
-</style>

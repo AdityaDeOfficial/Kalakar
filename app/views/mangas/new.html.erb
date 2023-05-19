@@ -1,20 +1,22 @@
-<div class="new-manga-container">
-  <h1 class="new-manga-title">New Manga</h1>
+<%# manga new path - Manga Upload page  %>
+<div class="form-container p-2">
+  <%# back to user dashboard page %>
+  <%= link_to 'Back', dashboard_index_path %>
 
+  <h1 class="d-flex justify-content-center">New Manga</h1>
   <%= form_with(model: @manga, local: true, html: { multipart: true }) do |form| %>
-    <% if @manga.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@manga.errors.count, "error") %> prohibited this manga from being saved:</h2>
+      <% if @manga.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@manga.errors.count, "error") %> prohibited this manga from being saved:</h2>
+          <ul>
+            <% @manga.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-        <ul>
-          <% @manga.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="form-inputs">
+  <div class="form-inputs">
       <div class="field">
         <%= form.label :manga_title %>
         <%= form.text_field :manga_title %>
@@ -31,22 +33,19 @@
       </div>
 
       <div class="field">
-        <%= form.label :tag_list, 'Tags (separated by commas)' %><br>
+        <%= form.label :tag_list, 'Tags (separated by commas)' %>
         <%= form.text_field :tag_list, value: @manga.tag_list.join(", ") %>
       </div>
 
-      <div class="field">
-        <%= form.label :cover_image %>
-        <%= form.file_field :cover_image %>
-      </div>
-    </div>
+      <label for="images" class="drop-container">
+        <span class="drop-title">Drop files here</span>
+        or
+        <input type="file" id="images" accept="image/*" required>
+      </label>
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit "Submit", class:"btn btn-primary" %>
     </div>
   <% end %>
 
-  <div class="back-link">
-    <%= link_to 'Back', mangas_path %>
-  </div>
 </div>
