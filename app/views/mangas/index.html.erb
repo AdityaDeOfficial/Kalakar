@@ -14,8 +14,8 @@
 </div>
 
 <%= form_with url: mangas_path, method: :get, html: { class: "d-flex search-form" }, data: {turbo_frame: :dropdown_search_results} do |form| %>
-  <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
-  <%= form.submit "Search", class: "btn btn-outline-primary" %>
+  <%= form.text_field :search, placeholder: "Search Manga (everything)", class: "form-control me-2", data: { controller: 'search', action: 'keyup->search#submitForm'} %>
+  <%#= form.submit "Search", class: "btn btn-outline-primary" %>
 <% end %>
 
 <%# dropdown search partial contains turbo_frame_tag with id of 'dropdown_search_results' %>

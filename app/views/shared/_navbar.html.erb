@@ -1,72 +1,64 @@
 <div class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container" id="results" data-controller="search">
-    <!-- Testing JSON injection results here -->
-    <div data-target="search.results">
-  </div>
+  <div class="container">
 
+  <%# Logo button %>
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "brand_logoo.jpg", class: "img-fluid", style: "max-height: 40px;" %>
     <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+      </button>
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" ></div>
+  <div class="d-flex flex-row w-100 justify-content-between">
+    <%# PG-search bar %>
+    <ul class="navbar-nav">
+      <ul class="navbar-nav">
+        <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
+          <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
+            data: { target: "search.query",
+            action: "keyup->search#search_manga" } %>
+          <%= form.submit "Search", class: "btn btn-outline-primary" %>
+        <% end %>
+      </ul>
+    <ul class="navbar-nav"></ul>
+  </div>
+</div>
+
+  <%# Displays username if logged in %>
+  <ul class="navbar-nav">
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
+      </li>
+
+      <%# My dashboard button %>
+      <li class="nav-item">
+        <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
+      </li>
+
+          <%# User Avatar dropdown box %>
+      <li class="nav-item dropdown">
+        <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag "https://avatars.githubusercontent.com/u/118530633?s=400&u=c3e0db0df50eb08c2145bed42682aec15dbba468&v=4", class: "avatar rounded-circle", alt: "dropdown menu", style: "max-height: 40px;" %>
+        </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
+            <%# example: link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Setting", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           </div>
-      <div class="d-flex flex-row w-100 justify-content-between">
-      <%# search bar??? %>
-        <ul class="navbar-nav">
-          <ul class="navbar-nav">
-            <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
-              <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
-                data: { target: "search.query",
-                action: "keyup->search#search_manga" } %>
-              <%= form.submit "Search", class: "btn btn-outline-primary" %>
-            <% end %>
-          </ul>
-        <ul class="navbar-nav"></ul>
-      </div>
-    </div>
-
-     <ul class="navbar-nav">
-        <% if user_signed_in? %>
-
-          <%# display username %>
-          <li class="nav-item">
-            <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
-          </li>
-
-          <%# button to home page %>
-          <%# <li class="nav-item active">
-            <%= link_to "Home", root_path , class: "nav-link" </li> %>
-
-          <%# button to user dashboard page %>
-          <li class="nav-item">
-            <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
-          </li>
-
-          <%# javascript - dropdown box from Avatar %>
-          <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://avatars.githubusercontent.com/u/118530633?s=400&u=c3e0db0df50eb08c2145bed42682aec15dbba468&v=4", class: "avatar rounded-circle", alt: "dropdown menu", style: "max-height: 40px;" %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
-              <%# example: link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Setting", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
+      </li>
         <% else %>
           <%# Button to Login in %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
-      </ul>
+  </ul>
   </div>
 </div>
 

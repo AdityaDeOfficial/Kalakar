@@ -2,10 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  // static targets = [ "query", "results" ];
 
   connect() {
-    //this.resultsTarget.classList.add("hidden")
   }
 
   submitForm(e) {
@@ -14,6 +12,7 @@ export default class extends Controller {
     input.form.requestSubmit()
   }
 
+  // old stimulus controller code. Working but too complex. Abandoned for tubro
   // displayResults(data) {
   //   let htmlString;
   //   let htmlString = ``;
