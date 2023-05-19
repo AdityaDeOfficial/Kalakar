@@ -1,6 +1,6 @@
 <%# Main container %>
-<div class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<div class="navbar navbar-expand-lg navbar-light bg-light border border-primary">
+  <div class="container border border-primary">
 
   <%# Logo button %>
   <div class="container-fluid">
@@ -12,31 +12,21 @@
       </button>
   </div>
 
-  <%# turbo search bar code %>
-<%# <%= form_with method: :get, data: { turbo_frame: :dropdown_search_results }, name: "unique_name_#{SecureRandom.hex}"  do |form| %>
-    <%# <div class="search-input">
-      <%= form.text_field :search, placeholder: "Search Manga", class: "search-form", data: { controller: 'search', action: 'keyup->search#submitForm' }, autocomplete: "new-password" %>
-      <%# <button type="submit" class="search-button"> %>
-        <%# <i class="fa-solid fa-search"></i> %>
-      <%# </button> %>
-    <%# </div> %>
-  <%# <% end %>
-
-<%# PG-search bar %>
-<% <div class="collapse navbar-collapse" id="navbarSupportedContent" ></div>
-  <div class="d-flex flex-row w-100 justify-content-between">
-    <ul class="navbar-nav">
+  <%# PG-search bar %>
+  <div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent" >
+    <div class="d-flex flex-row w-100 justify-content-between border border-primary">
       <ul class="navbar-nav">
-        <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
-          <% <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
-            data: { target: "search.query",
-            action: "keyup->search#search_manga" } %>
-          <% <%= form.submit "Search", class: "btn btn-outline-primary" %>
-        <% <% end %>
-      <% </ul>
-    <ul class="navbar-nav"></ul>
+        <ul class="navbar-nav">
+          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
+            <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
+              data: { target: "search.query",
+              action: "keyup->search#search_manga" } %>
+            <%= form.submit "Search", class: "btn btn-outline-primary" %>
+          <% end %>
+        </ul>
+      <ul class="navbar-nav"></ul>
+    </div>
   </div>
-</div>
 
   <%# Displays username if logged in %>
   <ul class="navbar-nav">
