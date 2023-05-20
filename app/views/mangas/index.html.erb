@@ -13,10 +13,11 @@
 </ul>
 </div>
 
+<%# turbo search bar %>
 <div class="container">
-  <%= form_with url: mangas_path, method: :get, data: { turbo_frame: :dropdown_search_results } do |form| %>
+  <%= form_with url: mangas_path, method: :get, data: { turbo_frame: :dropdown_search_results }, name: "unique_name_#{SecureRandom.hex}"  do |form| %>
     <div class="search-input">
-      <%= form.text_field :search, placeholder: "Search Manga", class: "search-form", data: { controller: 'search', action: 'keyup->search#submitForm' } %>
+      <%= form.text_field :search, placeholder: "Search Manga", class: "search-form", data: { controller: 'search', action: 'keyup->search#submitForm' }, autocomplete: "new-password" %>
       <button type="submit" class="search-button">
         <i class="fa-solid fa-search"></i>
       </button>

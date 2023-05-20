@@ -1,9 +1,9 @@
 <div style="--bs-gutter-x: 60rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * .5); padding-left: calc(var(--bs-gutter-x) * .5); margin-right: auto; margin-left: auto;">
   <%= turbo_frame_tag :dropdown_search_results, target: :_top do %>
-    <div style="background: white; padding: 10px; border: 1px solid black; width: fit-content;">
-      <ul>
+    <div style="search-results-container">
+      <ul style="padding-top: 2px">
         <% results.each do |manga| %>
-          <li style="paddin: 0px">
+          <li style="padding: 0px">
             <h5><%= link_to manga.manga_title, manga_path(manga) %></h5>
             <br>
             <p style="color:black; font-size: smaller"><%= manga.author %></p>
