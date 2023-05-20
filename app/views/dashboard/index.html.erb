@@ -6,11 +6,9 @@
     <%# user avatar  %>
     <div>
       <% if current_user.avatar.present? %>
-        <i class="avatar-user border border-primary fa-solid fa-user"></i>
+        <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill, class: "avatar-user border border-primary" %>
       <% else %>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar-user border border-primary" %>
-        <%# cloudinary upload %>
-        <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %>
+        <i class="avatar-user border border-primary fa-solid fa-user"></i>
       <% end %>
     </div>
 
