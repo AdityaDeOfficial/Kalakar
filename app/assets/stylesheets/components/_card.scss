@@ -1,5 +1,5 @@
-// cards
-.cards{
+// manga cards
+.manga-cards{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 8px;
@@ -7,21 +7,57 @@
   margin-top: 0px;
 }
 
-// card
-.card {
+// manga card
+.manga-card {
   display: flex;
   flex-direction:column;
   justify-content: center;
   align-content: center;
   padding: 20px;
-  height: 40vh;
-  width: 15vw;
+  height: 250px;
+  width: 180px;
   border-radius: 5px;
   box-shadow: 0 0 16px rgba(0,0,0,0.2);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
+.manga-card:hover {
   transform: translateY(-5px);
+}
+
+// manga cover image
+.manga-cover-image {
+  height: 380px;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+//chapter cards
+.chapter-cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+  padding-top: 0px;
+  margin-top: 0px;
+  border-radius: 5px;
+  //background color - TODO: Keep or not keep?
+  //background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+//chapter card
+.chapter-card {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; //text in center
+  align-content: center;
+  background-color: #FFFFD2;
+  border-radius: 8px;
+  font-weight: bold;
+  height: 36px;
+  font-size: 1.2em;
 }

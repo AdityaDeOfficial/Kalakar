@@ -11,13 +11,13 @@
   <li>GL</li>
 </ul>
 
-<div class="container">
+<div class="m-4">
   <h1>Top & Popular Manga</h1>
 
   <%# top mangas %>
-  <div class="cards">
+  <div class="manga-cards">
     <% @mangas.each do |manga| %>
-      <div class="card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+      <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
         <% if manga.cover_image.attached? %>
           <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
         <% else %>

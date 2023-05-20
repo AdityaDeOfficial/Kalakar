@@ -1,10 +1,16 @@
 // text style
-h1, h2, h3, h4, h5, h6, p, hr {
+*{
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, hr, form {
   color: #FFFFD2;
+  text-shadow: 1px 1px 3px rgba(128, 107, 0, 0.4);
 }
 
 // svg icon from font awesome
-.fa-solid, .fa-brands {
+i {
   color: #FFFFD2;
   font-size: 1.5em;
 }

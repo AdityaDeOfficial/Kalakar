@@ -39,6 +39,14 @@
             <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
           </li>
 
+          <%# button to user "message" - currently fake %>
+          <li class="nav-item position-relative me-3 border border-primary">
+            <%= link_to "Message", "#", class: "nav-link pe-3 border border-primary"%>
+            <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill border border-primary">1
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </li>
+
           <%# javascript - dropdown box from Avatar %>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,4 +101,3 @@
     color: #A8EACE;
   }
 </style> %>
-
