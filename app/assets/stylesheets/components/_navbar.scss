@@ -5,6 +5,7 @@
   .navbar {
     font-family: 'Roboto', sans-serif;
     color: #A8EACE;
+    position: relative;
   }
 
   .navbar-brand {
@@ -15,25 +16,37 @@
     color: #A8EACE;
   }
 
-//   .nav-link:hover {
-//     color: #ff6900;
-//   }
+  // turbo search bar
 
-//   .avatar {
-//     max-height: 40px;
-//   }
+  .search-form {
+    width: 65%;
+    height: 45px;
+    align-self: center;
+    background: linear-gradient(#A8EACE, #ccc);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 25px;
+    display: flex;
+    margin-left: 350px;
+    padding-left: 115px;
+  }
 
-//   .container-fluid {
-//     color: #A8EACE;
-//   }
+  .search-input {
+    width: 58%;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+  }
 
-// .search-form {
-//   margin-right: 1rem;
-// }
+  .search-button {
+    margin: -35px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
 
-
-// -----------------------above code is from system/le wagon default setting
-// below is Mary's code
+  // below is Mary's code
 
 // manga genres
 .manga-genre-navbar{

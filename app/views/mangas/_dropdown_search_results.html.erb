@@ -1,0 +1,16 @@
+<%# Turbo search results %>
+<%# <div style="--bs-gutter-x: 60rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x) * .5); padding-left: calc(var(--bs-gutter-x) * .5); margin-right: auto; margin-left: auto;">
+  <%= turbo_frame_tag :dropdown_search_results, target: :_top do %>
+    <%# <div id="search-results-container" style="search-results-container">
+      <ul style="padding-top: 2px">
+        <% results.each do |manga| %>
+          <%# <li style="padding: 0px">
+            <h5><%= link_to manga.manga_title, manga_path(manga) %></h5>
+            <%# <br>
+            <p style="color:black; font-size: smaller"><%= manga.author %></p>
+          <%# </li>
+        <% end %>
+      <%# </ul>
+    </div>
+  <% end %>
+<%# </div> %>
