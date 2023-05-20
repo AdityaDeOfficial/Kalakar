@@ -12,6 +12,7 @@ export default class extends Controller {
     input.form.requestSubmit()
   }
 }
+
   // old stimulus controller code. Working but too complex. Abandoned for tubro
   // displayResults(data) {
   //   let htmlString;

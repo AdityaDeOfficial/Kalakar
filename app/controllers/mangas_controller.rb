@@ -12,6 +12,7 @@ class MangasController < ApplicationController
   end
 
   def show
+    @mangas = Manga.all
   end
 
   def new

@@ -14,20 +14,10 @@
 </div>
 
 <%# turbo search bar %>
-<div class="container">
-  <%= form_with url: mangas_path, method: :get, data: { turbo_frame: :dropdown_search_results }, name: "unique_name_#{SecureRandom.hex}"  do |form| %>
-    <div class="search-input">
-      <%= form.text_field :search, placeholder: "Search Manga", class: "search-form", data: { controller: 'search', action: 'keyup->search#submitForm' }, autocomplete: "new-password" %>
-      <button type="submit" class="search-button">
-        <i class="fa-solid fa-search"></i>
-      </button>
-    </div>
-  <% end %>
-</div>
-
 <%# dropdown search partial contains turbo_frame_tag with id of 'dropdown_search_results' %>
-<%= render 'mangas/dropdown_search_results', results: @mangas %>
+<%#= render 'mangas/dropdown_search_results', results: @mangas %>
 
+<div class="container">
   <h1>Top & Popular Manga</h1>
 
   <%# top mangas %>
@@ -42,4 +32,8 @@
       </div>
     <% end %>
   </div>
+
+
+
+
 </div>
