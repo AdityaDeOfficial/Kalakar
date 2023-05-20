@@ -49,20 +49,27 @@
       <li class="nav-item">
         <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
       </li>
+          <%# button to user "message" - currently fake %>
+          <li class="nav-item position-relative me-3 border border-primary">
+            <%= link_to "Message", "#", class: "nav-link pe-3 border border-primary"%>
+            <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill border border-primary">1
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </li>
 
-          <%# User Avatar dropdown box %>
-      <li class="nav-item dropdown">
-        <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag "https://avatars.githubusercontent.com/u/118530633?s=400&u=c3e0db0df50eb08c2145bed42682aec15dbba468&v=4", class: "avatar rounded-circle", alt: "dropdown menu", style: "max-height: 40px;" %>
-        </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
-            <%# example: link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Setting", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-          </div>
-      </li>
+          <%# javascript - User Avatar dropdown box %>
+          <li class="nav-item dropdown">
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag "https://avatars.githubusercontent.com/u/118530633?s=400&u=c3e0db0df50eb08c2145bed42682aec15dbba468&v=4", class: "avatar rounded-circle", alt: "dropdown menu", style: "max-height: 40px;" %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
+              <%# example: link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Setting", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
         <% else %>
           <%# Button to Login in %>
           <li class="nav-item">
