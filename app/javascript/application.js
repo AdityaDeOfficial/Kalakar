@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import 'star-rating.js'
+import 'jquery-bar-rating'
 
 import { Application } from "@hotwired/stimulus"
 
@@ -12,3 +14,6 @@ application.debug = false
 window.Stimulus   = application
 
 export { application }
+
+import $ from 'jquery';
+global.$ = jQuery;
