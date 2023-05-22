@@ -1,13 +1,6 @@
   body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-  }
-
-  h1 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
   }
 
   table {
@@ -34,25 +27,8 @@
   }
 
   a {
-    color: #007bff;
     text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .new-chapter-btn,
-  .back-to-manga-btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    color: black;
   }
 
   .new-chapter-btn:hover,

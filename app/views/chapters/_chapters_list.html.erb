@@ -8,6 +8,7 @@
     <p>The author has not upload any chapter yet, I guess you have to wait patiently :(</p>
   <% end %>
 
+  <%# each chapters %>
   <div class="chapter-cards border border-primary m-3">
     <% chapters.each do |chapter| %>
       <div class="chapter-card border border-primary", onclick="location.href='<%= manga_chapter_path(manga, chapter) %>'"  >
