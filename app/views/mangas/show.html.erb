@@ -26,11 +26,15 @@
         <% end %>
       </div>
 
-      <%# bookmark %>
-      <% if current_user.favorited?(@manga) %>
-        <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+      <%# bookmark button or if manga creater then its an edit button %>
+      <% if current_user == @manga.user %>
+        <%= link_to 'Edit', manga_chapters_path(@manga), class: "btn btn-primary" %>
       <% else %>
-        <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+        <% if current_user.favorited?(@manga) %>
+          <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+        <% else %>
+          <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -92,8 +96,4 @@
     <% end %>
 
   </div>
-
-
-  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary' %>
-  <%= link_to 'Back', mangas_path, class: 'btn btn-primary' %>
 </div>
