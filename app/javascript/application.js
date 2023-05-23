@@ -15,5 +15,5 @@ window.Stimulus   = application
 
 export { application }
 
-import $ from 'jquery';
-global.$ = jQuery;
+//import $ from 'jquery';
+//global.$ = jQuery;

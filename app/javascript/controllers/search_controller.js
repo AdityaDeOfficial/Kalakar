@@ -2,48 +2,55 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
+  static targets = ["query", "form", "dropdown"]
 
   connect() {
+   console.log("yooooooooo")
   }
-
-  submitForm(e) {
-    console.log('Submitting form')
-    const input = e.currentTarget
-    input.form.requestSubmit()
-  }
+  // submitForm(event) {
+  //   event.preventDefault();
+  //   console.log('Submitting form');
+  //   this.formTarget.submit();
+  // }
+  displayResults(data) {
+    const form = this.dropdownTarget;
+    const fullForm = this.formTarget;
+    form.innerHTML = ``;
+    data.forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.manga_title;
+      optionElement.text = option.manga_title;
+      form.appendChild(optionElement);
+    });
+    form.size = form.length;
+    const multiplier = form.length * 23;
+    const dd = document.getElementById("dropdown-select");
+    dd.style.height = multiplier + "px";
+    console.log(dd);
+    Array.from(dd).forEach(option => {
+      console.log("Value: " + option.value + ", Text: " + option.text);
+      option.addEventListener("click", (e) => {
+        console.log(e.target.innerHTML)
+        // fullForm.querySelector("input[name='myInput']").value = e.target.innerHTML;
+        console.log(fullForm)
+        fullForm.submit();
+      })
+    });
+    // dd.forEach(value => {
+    //   console.log(value)
+    // })
+    // this.formTarget.submit();
+  };
+  async searchManga() {
+    const query = this.queryTarget.value;
+    console.log(query);
+    try {
+      const response = await fetch(`/mangas?search=${query}`);
+      const data = await response.json();
+      this.displayResults(data);
+      // this.openForm();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
-
-  // old stimulus controller code. Working but too complex. Abandoned for tubro
-  // displayResults(data) {
-  //   let htmlString;
-  //   let htmlString = ``;
-  //   //this.resultsTarget.innerHTML = '';
-  //   // clear html string
-
-  //   data.forEach(value=> {
-  //     htmlString += `<li><h3>${value.manga_title}</h3></li>`
-  //   });
-
-  //   console.log(htmlString);
-
-  //   this.resultsTarget.insertAdjacentHTML('afterbegin', `<ul>${htmlString}</ul>`);
-  //  // Loop through the array of objects and append each one to the results target
-
-  //   const resultElement = document.createElement('div');
-  //   resultElement.textContent = JSON.stringify(result);
-  //   // Convert the object to JSON string
-
-  //   this.resultsTarget.appendChild(resultElement);
-  // };
-
-  // async search_manga() {
-  //   const query = this.queryTarget.value
-  //   fetch(`/mangas?search=${query}`)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     this.displayResults(data)
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  //  }

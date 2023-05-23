@@ -4,8 +4,17 @@ class MangasController < ApplicationController
   def index
     if params[:tag]
       @mangas = Manga.tagged_with(params[:tag])
+    # elsif params[:search].present?
+    #   @mangas = Manga.search_by_title_and_tags(params[:search])
+    #   render json: @mangas
     elsif params[:search].present?
       @mangas = Manga.search_by_title_and_tags(params[:search])
+      # raise
+      respond_to do |format|
+        format.json { render json: @mangas }  # Render JSON response
+        format.html # Render HTML template
+      end
+      # redirect_to params[:search]_path
     else
       @mangas = Manga.all
     end

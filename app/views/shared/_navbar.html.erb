@@ -11,16 +11,24 @@
     </button>
 
     <%# PG-search bar %>
-    <div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent">
-      <ul class="navbar-nav border border-primary">
-          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex justify-content-between border border-success" } do |form| %>
-              <%= form.text_field :search, placeholder: "Search Manga", class: "#",
-                data: { target: "search.query",
-                action: "keyup->search#search_manga" } %>
+<div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent" data-controller="search">
+    <div class="d-flex flex-row w-100 justify-content-between border border-primary">
+      <ul class="navbar-nav">
+        <ul class="navbar-nav">
+        <%= form_with url: mangas_path, method: :get, remote: false, html: { class: "d-flex search-form" }, data: { target: "search.form"}, id: "search-form" do |form| %>
+            <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
+              data: { target: "search.query",
+              action: "keyup->search#searchManga" } %>
+                  <%= form.label :dropdown_field %>
+                  <%= form.select :dropdown_field, [], {}, data: { target: "search.dropdown" }, id: "dropdown-select" %>
             <%= form.submit "Search", class: "btn btn-outline-primary" %>
           <% end %>
-      </ul>
+        </ul>
+      <ul class="navbar-nav"></ul>
+      <div >
+      </div>
     </div>
+  </div>
 
     <%# Displays username if logged in %>
     <ul class="navbar-nav">
