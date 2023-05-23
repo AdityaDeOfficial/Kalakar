@@ -1,6 +1,10 @@
-<h1>Edit Chapter</h1>
+<%# chapter edit path - Chapter edit page %>
+<div class="form-container p-2">
 
-<%= render 'form', chapter: @chapter %>
+  <%# back to manga/id page %>
+  <%= link_to 'Back', manga_chapters_path(@manga), class:"button" %>
 
-<%= link_to 'Show', [@manga, @chapter] %> |
-<%= link_to 'Back', manga_chapters_path(@manga) %>
+  <h1 class="d-flex justify-content-center">Edit Chapter</h1>
+  <%= render 'form_chapter', chapter: @chapter %>
+
+</div>

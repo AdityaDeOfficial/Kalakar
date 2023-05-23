@@ -6,7 +6,7 @@
     <%# user avatar  %>
     <div>
       <% if current_user.avatar.present? %>
-        <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill, class: "avatar-user border border-primary" %>
+        <%= cl_image_tag current_user.avatar.key, crop: :fill, class: "avatar-user border border-primary" %>
       <% else %>
         <i class="avatar-user border border-primary fa-solid fa-user"></i>
       <% end %>
@@ -53,17 +53,23 @@
     <% if !@mangas.nil? %>
       <div class="manga-cards border border-primary">
         <% @mangas.each do |manga| %>
-          <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
-            <% if manga.cover_image.attached? %>
-              <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
-              <div class="dashboard-manga-links border border-primary">
-                <p><%= link_to 'Show', manga, class: 'dashboard-manga-link' %></p>
-                <p><%= link_to 'Edit', edit_manga_path(manga), class: 'dashboard-manga-link' %></p>
-                <p><%= link_to 'Destroy', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'dashboard-manga-link' %></p>
+          <div class="d-flex flex-column justify-content-center border border-danger">
+            <%# cover image %>
+            <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+              <% if manga.cover_image.attached? %>
+                <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+              <% else %>
+                <p><%= manga.manga_title %></p>
+              <% end %>
+            </div>
+            <%# edit/delete %>
+            <div class="border border-primary">
+              <p class="d-flex justify-content-center"><%= manga.manga_title %></p>
+              <div class="d-flex justify-content-center gap-2 border border-primary">
+              <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
+              <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
               </div>
-            <% else %>
-              <p><%= manga.manga_title %></p>
-            <% end %>
+            </div>
           </div>
         <% end %>
       </div>

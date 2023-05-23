@@ -4,3 +4,27 @@
   right: 16px;
   z-index: 1000;
 }
+
+// default 🔼
+// Aditya 🔽
+
+#error_explanation {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+#error_explanation h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#error_explanation ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+#error_explanation li {
+  margin-bottom: 0.5rem;
+}

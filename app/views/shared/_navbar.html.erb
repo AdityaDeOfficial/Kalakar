@@ -1,107 +1,72 @@
 <%# Main container %>
-<div class="navbar navbar-expand-lg navbar-light bg-light border border-primary">
-  <div class="container border border-primary">
-
-  <%# Logo button %>
+<div class="navbar navbar-expand-lg navbar-light bg-light p-2 border border-primary">
   <div class="container-fluid">
+    <%# Logo button %>
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "brand_logoo.jpg", class: "img-fluid", style: "max-height: 40px;" %>
     <% end %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-  </div>
 
-  <%# PG-search bar %>
-  <div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent" >
-    <div class="d-flex flex-row w-100 justify-content-between border border-primary">
-      <ul class="navbar-nav">
-        <ul class="navbar-nav">
-          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex search-form" } do |form| %>
-            <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
-              data: { target: "search.query",
-              action: "keyup->search#search_manga" } %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%# PG-search bar %>
+    <div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent">
+      <ul class="navbar-nav border border-primary">
+          <%= form_with url: mangas_path, method: :get, local: true, html: { class: "d-flex justify-content-between border border-success" } do |form| %>
+              <%= form.text_field :search, placeholder: "Search Manga", class: "#",
+                data: { target: "search.query",
+                action: "keyup->search#search_manga" } %>
             <%= form.submit "Search", class: "btn btn-outline-primary" %>
           <% end %>
-        </ul>
-      <ul class="navbar-nav"></ul>
+      </ul>
     </div>
-  </div>
 
-  <%# Displays username if logged in %>
-  <ul class="navbar-nav">
-    <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
-      </li>
+    <%# Displays username if logged in %>
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <%# Hi user %>
+        <li class="nav-item">
+          <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
+        </li>
 
-      <%# My dashboard button %>
-      <li class="nav-item">
-        <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
-      </li>
-          <%# button to user "message" - currently fake %>
-          <li class="nav-item position-relative me-3 border border-primary">
-            <%= link_to "Message", "#", class: "nav-link pe-3 border border-primary"%>
-            <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill border border-primary">1
-              <span class="visually-hidden">New alerts</span>
-            </span>
-          </li>
+        <%# My dashboard button %>
+        <li class="nav-item">
+          <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
+        </li>
+        <%# button to user "message" - currently fake %>
+        <li class="nav-item position-relative me-3 border border-primary">
+          <%= link_to "Message", "#", class: "nav-link pe-3 border border-primary"%>
+          <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill border border-primary">1
+            <span class="visually-hidden">New alerts</span>
+          </span>
+        </li>
 
-          <%# javascript - User Avatar dropdown box %>
-          <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.avatar.present? %>
-                <%= cl_image_tag current_user.avatar.key, class: "avatar rounded-circle", alt: "dropdown menu", style: "max-height: 40px;" %>
-              <% else %>
-                <i class="avatar-user border border-primary fa-solid fa-user"></i>
-              <% end %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
-              <%# example: link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Setting", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <%# Button to Login in %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-  </ul>
+        <%# javascript - User Avatar dropdown box %>
+        <li class="nav-item dropdown">
+          <%# user avatar %>
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.avatar.present? %>
+              <%= cl_image_tag current_user.avatar.key, class: "avatar", alt: "dropdown menu", style: "max-height: 40px;" %>
+            <% else %>
+              <i class="avatar-user border border-primary fa-solid fa-user"></i>
+            <% end %>
+          </a>
+          <%# dropdown menu %>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%# example: <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
+            <%# example: link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Setting", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <%# Button to Login in %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
-
-<%# TODO: MARY - Style Uncomment/move to CSS %>
-<%# <style>
-  .navbar {
-    font-family: 'Roboto', sans-serif;
-    color: #A8EACE;
-  }
-
-  .navbar-brand {
-    font-weight: bold;
-  }
-
-  .nav-link {
-    color: #A8EACE;
-  }
-
-  .nav-link:hover {
-    color: #ff6900;
-  }
-
-  .avatar {
-    max-height: 40px;
-  }
-
-  .search-form {
-    margin-right: 1rem;
-  }
-
-  .container-fluid {
-    color: #A8EACE;
-  }
-</style> %>
