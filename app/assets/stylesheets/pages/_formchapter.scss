@@ -1,0 +1,58 @@
+.chapter-form-container {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.btn {
+  background-color: #A8EACE;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #A8EACE;
+}
+
+.btn-primary:hover {
+  background-color: #A8EACE;
+}
+
+#error_explanation {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+#error_explanation h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#error_explanation ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+#error_explanation li {
+  margin-bottom: 0.5rem;
+}

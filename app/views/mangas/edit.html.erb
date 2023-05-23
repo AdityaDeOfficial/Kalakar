@@ -1,8 +1,53 @@
-<%# manga new path - Manga Upload page  %>
-<div class="form-container p-2">
-  <%# back to user dashboard page %>
-  <%= link_to 'Back', dashboard_index_path %>
+<div class="edit-manga-container">
+  <h1 class="edit-manga-title">Edit Manga</h1>
 
-  <h1 class="d-flex justify-content-center"><i class="fa-solid fa-user-pen"></i>Editing Manga: <%= @manga.manga_title %><i class="fa-solid fa-user-pen"></i></h1>
-  <%= render "form_manga", manga: @manga%>
+  <%= form_with(model: @manga, local: true, html: { multipart: true }) do |form| %>
+    <% if @manga.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@manga.errors.count, "error") %> prohibited this manga from being saved:</h2>
+
+        <ul>
+          <% @manga.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-inputs">
+      <div class="field">
+        <%= form.label :manga_title %>
+        <%= form.text_field :manga_title %>
+      </div>
+
+      <div class="field">
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div class="field">
+        <%= form.label :tag_list, 'Tags (separated by commas)' %><br>
+        <%= form.text_field :tag_list, value: @manga.tag_list.join(", ") %>
+      </div>
+
+      <div class="field">
+        <%= form.label :cover_image %>
+        <%= form.file_field :cover_image %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
+  <div class="back-links">
+    <%= link_to 'Show', @manga %> |
+    <%= link_to 'Back', mangas_path %>
+  </div>
 </div>
