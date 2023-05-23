@@ -1,11 +1,14 @@
+<div class="form-container">
 <h1>Chapters</h1>
+<%= link_to '+ New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
+<%= link_to 'Back to Manga', @manga, class: 'button' %>
 
 <table>
   <thead>
     <tr>
       <th>Chapter Number</th>
       <th>Chapter Title</th>
-      <th></th>
+      <th> <%= @manga.chapters.count %></th>
       <th></th>
       <th></th>
     </tr>
@@ -17,14 +20,15 @@
         <td><%= chapter.chapter_number %></td>
         <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
         <td><%= link_to 'Show', [@manga, chapter] %></td>
-        <td><%= link_to 'Edit', edit_manga_chapter_path(@manga, chapter) %></td>
-        <td><%= link_to 'Destroy', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+            <%= link_to(edit_manga_chapter_path(@manga, chapter)) do %>
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            <% end %>
+        </td>
+        <td><%= link_to 'Delete', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'new-chapter-btn' %>
-<%= link_to 'Back to Manga', @manga, class: 'back-to-manga-btn' %>
+</div>

@@ -26,11 +26,15 @@
         <% end %>
       </div>
 
-      <%# bookmark %>
-      <% if current_user.favorited?(@manga) %>
-        <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+      <%# bookmark button or if manga creater then its an edit button %>
+      <% if current_user == @manga.user %>
+        <%= link_to 'Edit', manga_chapters_path(@manga), class: "btn btn-primary" %>
       <% else %>
-        <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+        <% if current_user.favorited?(@manga) %>
+          <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+        <% else %>
+          <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -47,9 +51,9 @@
         <%# user avatar %>
         <div>
           <% if current_user.avatar.present? %>
-            <i class="avatar-user border border-primary fa-solid fa-user"></i>
+            <i class="avatar border border-primary fa-solid fa-user"></i>
           <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar-user border border-primary" %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar border border-primary" %>
             <%# cloudinary upload %>
             <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %> <%# TODO: make avatar work%>
           <% end %>
@@ -92,8 +96,4 @@
     <% end %>
 
   </div>
-
-
-  <%= link_to 'New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary' %>
-  <%= link_to 'Back', mangas_path, class: 'btn btn-primary' %>
 </div>
