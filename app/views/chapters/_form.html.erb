@@ -1,4 +1,3 @@
-<%# new/edit chapter form %>
 <div class="chapter-form-container">
   <%= form_with(model: [@manga, @chapter], local: true) do |form| %>
     <% if @chapter.errors.any? %>
@@ -13,26 +12,23 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="form-group">
       <%= form.label :chapter_number, "Chapter Number" %>
-      <%= form.number_field :chapter_number, min: "0" %>
+      <%= form.number_field :chapter_number, class: "form-control" %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= form.label :chapter_title, "Chapter Title" %>
-      <%= form.text_field :chapter_title %>
+      <%= form.text_field :chapter_title, class: "form-control" %>
     </div>
 
-    <%= form.label :chapter_photos, "Chapter Photos" %>
-    <div class="drop-container field">
-      <span class="drop-title">Drop files here</span>
-      or
-      <%= form.file_field :chapter_photos, multiple: true, required: true, accept: "image/*", id:"image" %>
+    <div class="form-group">
+      <%= form.label :chapter_photos, "Chapter Photos" %>
+      <%= form.file_field :chapter_photos, multiple: true, class: "form-control" %>
     </div>
 
-    <div>
+    <div class="form-group">
       <%= form.submit "Save", class: "btn btn-primary" %>
     </div>
-
   <% end %>
 </div>
