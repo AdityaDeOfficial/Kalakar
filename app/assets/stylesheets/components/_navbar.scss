@@ -1,28 +1,23 @@
 .hidden {
   display: none;
 }
-
   .navbar {
     font-family: 'Roboto', sans-serif;
     color: #A8EACE;
     position: relative;
   }
-
   .navbar-brand {
     font-weight: bold;
   }
-
   .nav-link {
     color: #A8EACE;
   }
-
   // turbo search bar
-
   .search-form {
     width: 65%;
     height: 45px;
     align-self: center;
-    // background: linear-gradient(#A8EACE, #ccc);
+    background: linear-gradient(#A8EACE, #ccc);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 25px;
@@ -30,14 +25,12 @@
     margin-left: 350px;
     padding-left: 115px;
   }
-
   .search-input {
     width: 58%;
     display: flex;
     align-items: center;
     font-family: 'Roboto', sans-serif;
   }
-
   .search-button {
     margin: -35px;
     background: none;
@@ -45,9 +38,7 @@
     padding: 0;
     cursor: pointer;
   }
-
   // below is Mary's code
-
 // manga genres
 .manga-genre-navbar{
   background-color: #CEFFEA;
@@ -55,17 +46,14 @@
   height: 36px;
   font-size: 1.2em;
 }
-
 li {
   list-style: none;
 }
-
 li:hover{
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   transition: 0.2s;
 }
-
 // the yellow dot next to Message on navbar if any unread message
 .badge {
   text-decoration: none;
@@ -73,7 +61,6 @@ li:hover{
   color: black;
 }
 
-
-.nav-div{
-  background-color: yellow;
+#dropdown-select {
+  color:red;
 }
