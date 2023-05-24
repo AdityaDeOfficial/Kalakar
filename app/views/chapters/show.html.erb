@@ -1,4 +1,5 @@
 <div class="chapter-container">
+  <%= link_to 'Back to Manga', @manga, class: 'button' %>
   <div class="chapter-header">
     <h2>Chapter <%= @chapter.chapter_number %>: <%= @chapter.chapter_title %></h2>
   </div>
@@ -22,56 +23,50 @@
       </button>
     </div>
   <% end %>
-
-  <div class="chapter-actions">
-    <%= link_to 'Edit', edit_manga_chapter_path(@manga, @chapter), class: 'button' %> |
-    <%= link_to 'Back to Manga', @manga, class: 'button' %>
-  </div>
 </div>
 
-<!-- Add a new chapter review -->
-<div class="form-container">
-  <h2>Add a chapter review</h2>
-  <%= form_with url: manga_chapter_chapter_reviews_path(@chapter.manga, @chapter), local: true do |form| %>
-    <div>
-      <%= form.label :content %>
-      <%= form.text_area "chapter_review[content]", required: true %>
-    </div>
+  <!-- Add a new chapter review -->
+  <div class="form-container">
+    <h2>Add a chapter review</h2>
+    <%= form_with url: manga_chapter_chapter_reviews_path(@chapter.manga, @chapter), local: true do |form| %>
+      <div>
+        <%= form.label :content %>
+        <%= form.text_area "chapter_review[content]", required: true %>
+      </div>
 
-    <div>
-      <%= form.label :rating %>
-      <%= form.select "chapter_review[rating]", options_for_select((1..5).map { |number| [number, number] }), {}, class: 'star-rating' %>
-        <script>
-          $(document).ready(function() {
-            $('#chapter_review_rating').barrating({
-              theme: 'fontawesome-stars'
+      <div>
+        <%= form.label :rating %>
+        <%= form.select "chapter_review[rating]", options_for_select((1..5).map { |number| [number, number] }), {}, class: 'star-rating' %>
+          <script>
+            $(document).ready(function() {
+              $('#chapter_review_rating').barrating({
+                theme: 'fontawesome-stars'
+              });
             });
-          });
-        </script>
-    </div>
+          </script>
+      </div>
 
-    <div>
-      <%= form.submit "Add Review" %>
-    </div>
-  <% end %>
-</div>
+      <div>
+        <%= form.submit "Add Review" %>
+      </div>
+    <% end %>
 
-
-<!-- Display chapter reviews -->
-<div class="reviews-container">
-  <h2>Chapter Reviews</h2>
-  <% if @chapter.chapter_reviews.any? %>
-    <ul>
-      <% @chapter.chapter_reviews.order(created_at: :desc).each do |review| %>
-        <li>
-          <%= image_tag url_for(review.user.avatar), class: "avatar-small", alt: "#{review.user.username}'s avatar" if review.user.avatar.attached? %>
-          <span style="font-size: 1.2em; font-weight: bold;"><%= review.user.username %></span> <br>
-          <%= review.content %> <br>
-          <% (1..review.rating).each do %>★<% end %><% (review.rating+1..5).each do %>☆<% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No reviews yet. Be the first to add a review!</p>
-  <% end %>
+  <!-- Display chapter reviews -->
+  <div class="reviews-container">
+    <h2>Chapter Reviews</h2>
+    <% if @chapter.chapter_reviews.any? %>
+      <ul class="review-ul">
+        <% @chapter.chapter_reviews.order(created_at: :desc).each do |review| %>
+          <li class="review-il">
+            <%= image_tag url_for(review.user.avatar), class: "avatar-small", alt: "#{review.user.username}'s avatar" if review.user.avatar.attached? %>
+            <span style="font-size: 1.2em; font-weight: bold;"><%= review.user.username %></span> <br>
+            <%= review.content %> <br>
+            <% (1..review.rating).each do %>★<% end %><% (review.rating+1..5).each do %>☆<% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No reviews yet. Be the first to add a review!</p>
+    <% end %>
+  </div>
 </div>

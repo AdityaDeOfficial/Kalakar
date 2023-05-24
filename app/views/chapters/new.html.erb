@@ -1,7 +1,7 @@
 <%# chapter new path - Chapter Upload page %>
 <div class="form-container p-2">
   <%# back to manga/id page %>
-    <%= link_to 'Back', manga_path(@manga), class: "border border-danger" %>
+    <%= link_to 'Back', manga_path(@manga) %>
 
   <h1 class="d-flex justify-content-center"><i class="fa-solid fa-star"></i>New Chapter<i class="fa-solid fa-star"></i></h1>
   <%= render 'form_chapter', chapter: @chapter %>
