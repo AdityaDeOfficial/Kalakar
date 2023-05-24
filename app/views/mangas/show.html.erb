@@ -28,12 +28,16 @@
 
       <%# bookmark button or if manga creater then its an edit button %>
       <% if current_user == @manga.user %>
-        <%= link_to 'Edit', manga_chapters_path(@manga), class: "btn btn-primary" %>
+        <%= link_to 'Edit', manga_chapters_path(@manga), class: "button" %>
       <% else %>
         <% if current_user.favorited?(@manga) %>
-          <%= button_to 'Bookmarked!!', unfavorite_manga_path(@manga), method: :post, class: "btn btn-danger" %>
+          <%= button_to unfavorite_manga_path(@manga), method: :post, class: "button" do %>
+            <i class="fa-solid fa-heart"></i> Bookmarked!
+          <% end %>
         <% else %>
-          <%= button_to 'Bookmark?', favorite_manga_path(@manga), method: :post, class: "btn btn-primary" %>
+          <%= button_to favorite_manga_path(@manga), method: :post, class: "button" do %>
+            <i class="fa-regular fa-heart"></i> Bookmark?
+          <% end %>
         <% end %>
       <% end %>
     </div>

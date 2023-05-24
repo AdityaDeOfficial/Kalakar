@@ -54,7 +54,7 @@
           <%# user avatar %>
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.avatar.present? %>
-              <%= cl_image_tag current_user.avatar.key, class: "avatar", alt: "dropdown menu", style: "max-height: 40px;" %>
+              <%= cl_image_tag current_user.avatar.key, class: "avatar", alt: "dropdown menu" %>
             <% else %>
               <i class="avatar-user border border-primary fa-solid fa-user"></i>
             <% end %>
