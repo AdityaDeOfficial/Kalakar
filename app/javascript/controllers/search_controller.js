@@ -19,7 +19,7 @@ export default class extends Controller {
       form.appendChild(optionElement);
     });
     form.size = form.length;
-    const multiplier = form.length * 40;
+    const multiplier = form.length * 38;
     const dd = document.getElementById("dropdown-select");
     dd.style.height = multiplier + "px";
     console.log(dd);
