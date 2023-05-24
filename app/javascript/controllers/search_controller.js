@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["query", "form", "dropdown"]
 
   connect() {
-   console.log("yooooooooo")
   }
 
   displayResults(data) {
@@ -19,7 +18,7 @@ export default class extends Controller {
       form.appendChild(optionElement);
     });
     form.size = form.length;
-    const multiplier = form.length * 38;
+    const multiplier = form.length * 35;
     const dd = document.getElementById("dropdown-select");
     dd.style.height = multiplier + "px";
     console.log(dd);
