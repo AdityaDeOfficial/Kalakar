@@ -2,48 +2,46 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
+  static targets = ["query", "form", "dropdown"]
 
   connect() {
   }
 
-  submitForm(e) {
-    console.log('Submitting form')
-    const input = e.currentTarget
-    input.form.requestSubmit()
-  }
+  displayResults(data) {
+    const form = this.dropdownTarget;
+    const fullForm = this.formTarget;
+    form.innerHTML = ``;
+    data.forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.manga_title;
+      optionElement.text = option.manga_title;
+      form.appendChild(optionElement);
+    });
+    form.size = form.length;
+    const multiplier = form.length * 35;
+    const dd = document.getElementById("dropdown-select");
+    dd.style.height = multiplier + "px";
+    console.log(dd);
+    Array.from(dd).forEach(option => {
+      option.addEventListener("click", (e) => {
+        const selectedOption = e.target.innerHTML;
+        const selectedManga = data.find(option => option.manga_title === selectedOption);
+        if (selectedManga) {
+          window.location.href = `/mangas/${selectedManga.id}`;
+        }
+      })
+    });
+
+  };
+  async searchManga() {
+    const query = this.queryTarget.value;
+    console.log(query);
+    try {
+      const response = await fetch(`/mangas?search=${query}`);
+      const data = await response.json();
+      this.displayResults(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
-
-  // old stimulus controller code. Working but too complex. Abandoned for tubro
-  // displayResults(data) {
-  //   let htmlString;
-  //   let htmlString = ``;
-  //   //this.resultsTarget.innerHTML = '';
-  //   // clear html string
-
-  //   data.forEach(value=> {
-  //     htmlString += `<li><h3>${value.manga_title}</h3></li>`
-  //   });
-
-  //   console.log(htmlString);
-
-  //   this.resultsTarget.insertAdjacentHTML('afterbegin', `<ul>${htmlString}</ul>`);
-  //  // Loop through the array of objects and append each one to the results target
-
-  //   const resultElement = document.createElement('div');
-  //   resultElement.textContent = JSON.stringify(result);
-  //   // Convert the object to JSON string
-
-  //   this.resultsTarget.appendChild(resultElement);
-  // };
-
-  // async search_manga() {
-  //   const query = this.queryTarget.value
-  //   fetch(`/mangas?search=${query}`)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     this.displayResults(data)
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  //  }
