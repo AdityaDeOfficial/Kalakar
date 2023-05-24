@@ -1,16 +1,16 @@
 <%# manga genre ->css:_navabr %>
 <div>
-<ul class="manga-genre-navbar border border-primary d-flex justify-content-around align-items-center">
-  <li class="border border-primary">Adventure</li>
-  <li>Fantasy</li>
-  <li>Sci-Fic</li>
-  <li>Romance</li>
-  <li>Supernatural</li>
-  <li>Historical</li>
-  <li>SuperHero</li>
-  <li>BL</li>
-  <li>GL</li>
-</ul>
+  <ul class="manga-genre-navbar border border-primary d-flex justify-content-around align-items-center">
+    <li class="border border-primary"><%= link_to "Adventure", mangas_path(tag: "Adventure") %></li>
+    <li><%= link_to "Fantasy", mangas_path(tag: "Fantasy") %></li>
+    <li><%= link_to "Sci-Fi", mangas_path(tag: "Sci-Fi") %></li>
+    <li><%= link_to "Romance", mangas_path(tag: "Romance") %></li>
+    <li><%= link_to "Supernatural", mangas_path(tag: "Supernatural") %></li>
+    <li><%= link_to "Historical", mangas_path(tag: "Historical") %></li>
+    <li><%= link_to "SuperHero", mangas_path(tag: "SuperHero") %></li>
+    <li><%= link_to "BL", mangas_path(tag: "BL") %></li>
+    <li><%= link_to "GL", mangas_path(tag: "GL") %></li>
+  </ul>
 </div>
 
 <%# turbo search bar %>
