@@ -63,7 +63,7 @@
         <%# rating %>
         <div class="form-group">
           <%= form.label :rating, class: "form-label" %>
-          <%= form.select :rating, (1..5).to_a, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
+          <%= form.select :rating, (1..5).to_a.reverse, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
         </div>
         <%# submit button %>
         <div class="form-group">
