@@ -1,7 +1,17 @@
-// manga cards
+// manga cards - manga index page
 .manga-cards{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 8px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+
+// manga cards - manga dashboard page
+.manga-dashboard-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 8px;
   padding-top: 0px;
   margin-top: 0px;
@@ -27,8 +37,8 @@
 }
 
 .manga-cover-image {
-  height: 380px;
-  width: 300px;
+  // height: 380px;
+  // width: 300px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -37,8 +47,8 @@
 //chapter cards
 .chapter-cards{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
   padding-top: 0px;
   margin-top: 0px;
   border-radius: 5px;

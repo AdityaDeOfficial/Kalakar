@@ -1,25 +1,26 @@
-<div class="container">
-  <br>
+<div class="container my-2">
   <%# user avatar name and social media %>
-  <div class="border border-primary d-flex align-items-center">
+  <div class="d-flex align-items-center">
 
     <%# user avatar  %>
     <div>
       <% if current_user.avatar.present? %>
-        <%= cl_image_tag current_user.avatar.key, crop: :fill, class: "avatar-user border border-primary" %>
+        <%= cl_image_tag current_user.avatar.key, crop: :fill, class: "avatar-user" %>
       <% else %>
-        <i class="avatar-user border border-primary fa-solid fa-user"></i>
+        <i class="avatar-user fa-solid fa-user"></i>
       <% end %>
     </div>
 
     <%# user social media/contact %>
-    <div class="border border-primary">
+    <div>
       <h1><%= current_user.username %></h1>
 
       <i class="fa-solid fa-envelope"></i>
 
       <% if current_user.twitter.present? %>
-        <i class="fa-brands fa-twitter"></i>
+        <a href="<%= current_user.twitter %>">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
       <% end %>
 
       <% if current_user.instagram.present? %>
@@ -29,7 +30,7 @@
   </div>
 
   <%# user bio %>
-  <div class="border border-primary">
+  <div>
     <p>Bio: <%= current_user.bio %></p>
   </div>
 
@@ -39,7 +40,7 @@
   <div>
 
     <%# My Manga title + manga_new_path %>
-    <div class="border border-primary d-flex justify-content-between align-items-end">
+    <div class="d-flex justify-content-between align-items-end">
       <h3>My Manga</h3>
       <h4>Upload manga :D
         <%= link_to new_manga_path do %>
@@ -51,21 +52,21 @@
 
     <%# display all user mangas %>
     <% if !@mangas.nil? %>
-      <div class="manga-cards border border-primary">
+      <div class="manga-dashboard-cards">
         <% @mangas.each do |manga| %>
-          <div class="d-flex flex-column justify-content-center border border-danger">
+          <div class="d-flex flex-column justify-content-center">
             <%# cover image %>
-            <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+            <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
               <% if manga.cover_image.attached? %>
                 <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
               <% else %>
-                <p><%= manga.manga_title %></p>
+                <h3><%= manga.manga_title %></h3>
               <% end %>
             </div>
             <%# edit/delete %>
-            <div class="border border-primary">
-              <p class="d-flex justify-content-center"><%= manga.manga_title %></p>
-              <div class="d-flex justify-content-center gap-2 border border-primary">
+            <div>
+              <h3 class="d-flex justify-content-center"><%= manga.manga_title %></h3>
+              <div class="d-flex justify-content-center gap-2">
               <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
               <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
               </div>
@@ -80,7 +81,7 @@
     <br>
 
     <%# bookmark title%>
-    <div class="border border-primary d-flex justify-content-between align-items-end">
+    <div class="d-flex justify-content-between align-items-end">
       <h3>Bookmarked<i class="fa-solid fa-heart" style="color: #f39bd3;"></i></h3>
       <h4>See all -></h4>
     </div>
@@ -88,9 +89,9 @@
 
     <%# all user bookmark %>
     <% if @favorited_mangas.present? %>
-      <div class="manga-cards border border-primary">
+      <div class="manga-cards">
         <% @favorited_mangas.each do |manga| %>
-          <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+          <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
             <% if manga.cover_image.attached? %>
               <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
             <% else %>
@@ -100,7 +101,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="border border-primary">Start watching manga and bookmark them!</p>
+      <p>Start watching manga and bookmark them!</p>
     <% end %>
 
     <%# TODO:MARY - add top manga of the week etc %>

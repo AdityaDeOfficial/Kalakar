@@ -1,5 +1,5 @@
 <%# Main container %>
-<div class="navbar navbar-expand-lg navbar-light bg-light p-2 border border-primary">
+<div class="navbar navbar-expand-lg navbar-light bg-light p-2">
   <div class="container-fluid">
     <%# Logo button %>
     <%= link_to root_path, class: "navbar-brand" do %>
@@ -11,23 +11,23 @@
     </button>
 
     <%# AJAX-search bar %>
-<div class="collapse navbar-collapse border border-primary" id="navbarSupportedContent" data-controller="search">
-  <div class="search-and-dropdown">
-    <ul class="navbar-nav">
-      <%= form_with url: mangas_path, method: :get, remote: false, html: { class: "d-flex search-form" }, data: { target: "search.form"}, id: "search-form", name: "unique_name_#{SecureRandom.hex}" do |form| %>
-        <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
-          data: { target: "search.query",
-          action: "keyup->search#searchManga" },
-          autocomplete: "new-password" %>
-          <button type="submit" class="search-button">
-            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #7b7699;"></i>
-          </button>
-          <%= form.select :dropdown_field, [], {}, data: { target: "search.dropdown" }, id: "dropdown-select" %>
-      <% end %>
-    </ul>
-    <ul class="navbar-nav"></ul>
-  </div>
-</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-controller="search">
+      <div class="search-and-dropdown">
+        <ul class="navbar-nav">
+          <%= form_with url: mangas_path, method: :get, remote: false, html: { class: "d-flex search-form" }, data: { target: "search.form"}, id: "search-form", name: "unique_name_#{SecureRandom.hex}" do |form| %>
+            <%= form.text_field :search, placeholder: "Search Manga", class: "form-control me-2",
+              data: { target: "search.query",
+              action: "keyup->search#searchManga" },
+              autocomplete: "new-password" %>
+              <button type="submit" class="search-button">
+                <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #7b7699;"></i>
+              </button>
+              <%= form.select :dropdown_field, [], {}, data: { target: "search.dropdown" }, id: "dropdown-select" %>
+          <% end %>
+        </ul>
+        <ul class="navbar-nav"></ul>
+      </div>
+    </div>
 
     <%# Displays username if logged in %>
     <ul class="navbar-nav">
@@ -35,16 +35,21 @@
         <%# Hi user %>
         <li class="nav-item">
           <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
+
         </li>
 
         <%# My dashboard button %>
-        <li class="nav-item">
-          <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
-        </li>
+      <li class="nav-item">
+        <%= link_to dashboard_index_path, class: "nav-link" do %>
+<i class="fa-solid fa-house-user fa-2xl" style="color: #ffffff;"></i>
+        <% end %>
+      </li>
         <%# button to user "message" - currently fake %>
-        <li class="nav-item position-relative me-3 border border-primary">
-          <%= link_to "Messages", "#",  class: "nav-link" %>
-          <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill border border-primary">1
+        <li class="nav-item position-relative me-3">
+          <%= link_to "#", class: "nav-link" do %>
+            <i class="fa-solid fa-envelope fa-2xl" style="color: #f4f4f4;"></i>
+          <% end %>
+          <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill">1
             <span class="visually-hidden">New alerts</span>
           </span>
         </li>
@@ -56,7 +61,7 @@
             <% if current_user.avatar.present? %>
               <%= cl_image_tag current_user.avatar.key, class: "avatar", alt: "dropdown menu" %>
             <% else %>
-              <i class="avatar-user border border-primary fa-solid fa-user"></i>
+              <i class="avatar-user fa-solid fa-user"></i>
             <% end %>
           </a>
           <%# dropdown menu %>
