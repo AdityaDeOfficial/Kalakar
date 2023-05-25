@@ -35,15 +35,20 @@
         <%# Hi user %>
         <li class="nav-item">
           <%= link_to "Hi #{current_user.username}!", "#", class: "nav-link" %>
+
         </li>
 
         <%# My dashboard button %>
-        <li class="nav-item">
-          <%= link_to "My Dashboard", dashboard_index_path, class: "nav-link" %>
-        </li>
+      <li class="nav-item">
+        <%= link_to dashboard_index_path, class: "nav-link" do %>
+<i class="fa-solid fa-house-user fa-2xl" style="color: #ffffff;"></i>
+        <% end %>
+      </li>
         <%# button to user "message" - currently fake %>
         <li class="nav-item position-relative me-3">
-          <%= link_to "Messages", "#",  class: "nav-link" %>
+          <%= link_to "#", class: "nav-link" do %>
+            <i class="fa-solid fa-envelope fa-2xl" style="color: #f4f4f4;"></i>
+          <% end %>
           <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill">1
             <span class="visually-hidden">New alerts</span>
           </span>
