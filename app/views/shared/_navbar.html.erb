@@ -22,7 +22,7 @@
           <button type="submit" class="search-button">
             <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #7b7699;"></i>
           </button>
-          <%= form.select :dropdown_field, [], {}, data: { target: "search.dropdown" }, id: "dropdown-select" %>
+          <%= form.select :dropdown_field, [], {}, data: { target: "search.dropdown", action: "mouseover->search#hoverDropdown mouseout->search#hoverHide" }, class: "hidden", id: "dropdown-select" %>
       <% end %>
     </ul>
     <ul class="navbar-nav"></ul>

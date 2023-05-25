@@ -21,7 +21,7 @@ export default class extends Controller {
     const multiplier = form.length * 35;
     const dd = document.getElementById("dropdown-select");
     dd.style.height = multiplier + "px";
-    console.log(dd);
+    dd.classList.remove("hidden"); // show the form
     Array.from(dd).forEach(option => {
       option.addEventListener("click", (e) => {
         const selectedOption = e.target.innerHTML;
@@ -31,11 +31,10 @@ export default class extends Controller {
         }
       })
     });
-
   };
+
   async searchManga() {
     const query = this.queryTarget.value;
-    console.log(query);
     try {
       const response = await fetch(`/mangas?search=${query}`);
       const data = await response.json();
@@ -44,4 +43,14 @@ export default class extends Controller {
       console.error(error);
     }
   };
+
+  hoverDropdown() {
+    const dd = document.getElementById("dropdown-select");
+    dd.classList.remove("hidden"); // show the form
+  };
+
+  hoverHide() {
+    const dd = document.getElementById("dropdown-select");
+    dd.classList.add("hidden"); // hide the form
+};
 }
