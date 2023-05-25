@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container border border-primary">
 <%# class="border border-primary" %>
   <%# manga cover image %>
   <div class="d-flex mx-4">
     <div class="manga-cover-image">
       <% if @manga.cover_image.attached? %>
-        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 380, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
       <% else %>
         <p>No cover image</p>
       <% end %>
@@ -13,8 +13,8 @@
     <div class="ps-3">
       <%# manga info %>
       <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
-      <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: able to link the author name to the user dashboard %>
-      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3>%>
+      <h1><strong>Author:</strong><%= @manga.user.username %></h1>  <%# TODO: able to link the author name to the user dashboard %>
+      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3> %>
       <h1>Description:<%= @manga.description %></h1>
 
 
@@ -33,8 +33,8 @@
           <%= link_to 'Edit', manga_chapters_path(@manga), class: "button" %>
         <% else %>
           <% if current_user.favorited?(@manga) %>
-            <%= button_to unfavorite_manga_path(@manga), method: :post, class: "button" do %>
-              <i class="fa-solid fa-heart"></i> Bookmarked!
+            <%= button_to unfavorite_manga_path(@manga), method: :post, class: "bookmark-button" do %>
+              Bookmarked! <i class="fa-solid fa-heart"></i>
             <% end %>
           <% else %>
             <%= button_to favorite_manga_path(@manga), method: :post, class: "button" do %>
