@@ -19,12 +19,15 @@
   <%# top mangas %>
   <div class="manga-cards">
     <% @mangas.each do |manga| %>
-      <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
-        <% if manga.cover_image.attached? %>
-          <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
-        <% else %>
-          <p>No cover image</p>
-        <% end %>
+      <div class="d-flex flex-column justify-content-center border border-primary">
+        <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
+            <% if manga.cover_image.attached? %>
+              <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+            <% else %>
+              <p>No cover image</p>
+            <% end %>
+        </div>
+        <p class="border border-primary"><%= manga.manga_title %></p>
       </div>
     <% end %>
   </div>

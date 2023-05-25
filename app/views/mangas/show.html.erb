@@ -1,6 +1,6 @@
 <div class="container">
   <%# manga cover image %>
-  <div class="d-flex mx-4">
+  <div class="manga-container d-flex mx-4">
     <div class="manga-cover-image">
       <% if @manga.cover_image.attached? %>
         <%= cl_image_tag @manga.cover_image.key, width: 300, height: 380, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
@@ -21,7 +21,7 @@
       <div class="d-flex flex-row gap-1 py-2">
         <% @manga.tag_list.each do |tag| %>
           <div class="badge rounded-pill">
-            <%= link_to tag, mangas_path(tag: tag) %>
+            #<%= link_to tag, mangas_path(tag: tag) %>
           </div>
         <% end %>
       </div>
@@ -45,6 +45,8 @@
 
     </div>
   </div>
+
+  <hr>
 
   <%# render chapters from chapter controller %>
   <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
@@ -94,3 +96,16 @@
     </div>
   </div>
 </div>
+
+
+<style>
+.manga-container {
+ background-color: rgba(255, 255, 255, 0.2);
+ border-radius: 4px;
+ padding: 12px;
+}
+
+label {
+  color: #FFFFD2;
+}
+</style>
