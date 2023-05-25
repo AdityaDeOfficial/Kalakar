@@ -1,45 +1,48 @@
-<div class="container border border-primary">
-<%# class="border border-primary" %>
+<div class="container">
   <%# manga cover image %>
-  <div class="d-flex border border-primary mx-4">
-    <div class="manga-cover-image  border border-success">
+  <div class="d-flex mx-4">
+    <div class="manga-cover-image">
       <% if @manga.cover_image.attached? %>
-        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 450, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 380, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
       <% else %>
         <p>No cover image</p>
       <% end %>
     </div>
 
-    <div class="border border-primary ps-3">
+    <div class="ps-3">
       <%# manga info %>
       <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
-      <h3><strong>Author:</strong><%= @manga.user.username %></h3>  <%# TODO: able to link the author name to the user dashboard %>
-      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3>%>
+      <h1><strong>Author:</strong><%= @manga.user.username %></h1>  <%# TODO: able to link the author name to the user dashboard %>
+      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3> %>
       <h1>Description:<%= @manga.description %></h1>
 
+
       <%# tag %>
-      <div class="d-flex border border-primary gap-1">
+      <div class="d-flex flex-row gap-1 py-2">
         <% @manga.tag_list.each do |tag| %>
-          <div class="border border-primary badge rounded-pill">
+          <div class="badge rounded-pill">
             <%= link_to tag, mangas_path(tag: tag) %>
           </div>
         <% end %>
       </div>
 
       <%# bookmark button or if manga creater then its an edit button %>
-      <% if current_user == @manga.user %>
-        <%= link_to 'Edit', manga_chapters_path(@manga), class: "button" %>
-      <% else %>
-        <% if current_user.favorited?(@manga) %>
-          <%= button_to unfavorite_manga_path(@manga), method: :post, class: "button" do %>
-            <i class="fa-solid fa-heart"></i> Bookmarked!
-          <% end %>
+      <div class="align-items-end">
+        <% if current_user == @manga.user %>
+          <%= link_to 'Edit', manga_chapters_path(@manga), class: "button" %>
         <% else %>
-          <%= button_to favorite_manga_path(@manga), method: :post, class: "button" do %>
-            <i class="fa-regular fa-heart"></i> Bookmark?
+          <% if current_user.favorited?(@manga) %>
+            <%= button_to unfavorite_manga_path(@manga), method: :post, class: "bookmark-button" do %>
+              Bookmarked! <i class="fa-solid fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= button_to favorite_manga_path(@manga), method: :post, class: "button" do %>
+              <i class="fa-regular fa-heart"></i> Bookmark?
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
+
     </div>
   </div>
 
@@ -52,16 +55,6 @@
    <%# add a new manga review %>
     <div>
       <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
-        <%# user avatar %>
-        <div>
-          <% if current_user.avatar.present? %>
-            <i class="avatar border border-primary fa-solid fa-user"></i>
-          <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/mchancfy", class: "avatar border border-primary" %>
-            <%# cloudinary upload %>
-            <%# <%= cl_image_tag current_user.avatar.key, height: 300, width: 400, crop: :fill %> <%# TODO: make avatar work%>
-          <% end %>
-        </div>
         <%# content %>
         <div class="form-group">
           <%= form.label :content, class: "form-label" %>
@@ -79,25 +72,25 @@
       <% end %>
     </div>
 
-    <div class="d-flex border flex-column border-primary">
+
+    <!-- Display chapter reviews -->
+    <div class="reviews-container">
     <%# each manga review %>
-    <% if @manga.manga_reviews.present? %>
-      <% @manga.manga_reviews.each do |manga_review| %>
-        <div class="border border-primary">
-          <p class="border border-primary"><%#<%= manga_review.user.username: TODO: not sure why its not working TUT%>
-          <i class="border border-primary fa-regular fa-star"></i></p>
-          <p class="border border-primary"><%= manga_review.content %></p>
-          <%# <p class="border border-primary">Rating: <%= manga_review.rating </p> %>
-
-          <div class="d-flex border border-primary">
-            <i class="border border-primary fa-regular fa-thumbs-up"></i>
-            <p class="border border-primary">Reply</p>
-          </div>
-        </div>
+    <h2>Reviews</h2>
+      <% if @manga.manga_reviews.any? %>
+        <ul class="review-ul">
+          <% @manga.manga_reviews.order(created_at: :desc).each do |manga_review| %>
+            <li class="review-il">
+              <%= image_tag url_for(manga_review.user.avatar), class: "avatar-small", alt: "#{manga_review.user.username}'s avatar" if manga_review.user.avatar.attached? %>
+              <span style="font-size: 1.2em; font-weight: bold;"><%= manga_review.user.username %></span> <br>
+              <%= manga_review.content %> <br>
+              <% (1..manga_review.rating).each do %>★<% end %><% (manga_review.rating+1..5).each do %>☆<% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No reviews yet. Be the first to add a review!</p>
       <% end %>
-    <% else %>
-      <p>leave a comment!</p>
-    <% end %>
-
+    </div>
   </div>
 </div>
