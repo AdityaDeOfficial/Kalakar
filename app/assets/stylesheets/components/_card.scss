@@ -13,11 +13,11 @@
   flex-direction:column;
   justify-content: center;
   align-content: center;
-  padding: 20px;
+  // padding: 20px;
   height: 250px;
   width: 180px;
   border-radius: 5px;
-  box-shadow: 0 0 16px rgba(0,0,0,0.2);
+  // box-shadow: 0 0 16px rgba(0,0,0,0.2);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -26,7 +26,6 @@
   transform: translateY(-5px);
 }
 
-// manga cover image
 .manga-cover-image {
   height: 380px;
   width: 300px;
