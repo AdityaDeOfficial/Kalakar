@@ -83,10 +83,11 @@
 
   // manga genres
 .manga-genre-navbar{
-  background-color: #CEFFEA;
+  background: linear-gradient(to top, #A8EACE, whitesmoke);
   font-weight: bold;
   height: 36px;
   font-size: 1.2em;
+  color: black;
 }
 
 li {
@@ -98,13 +99,15 @@ li {
 
 a {
   text-decoration: none;
-  color: black;
   font-style: bold;
+  color: black;
 }
 
 a:hover {
   text-decoration: none;
-  color: black;
+  color: #003300;
+  background-color: whitesmoke;
+  border-radius: 3px;
 }
 
 // li{

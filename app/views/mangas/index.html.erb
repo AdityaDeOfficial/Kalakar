@@ -14,21 +14,133 @@
 </div>
 
 <div class="m-4">
-  <h1>Top & Popular Manga</h1>
+  <div class="manga-index-header-card">
+    <h1 class="header-title">Top & Popular Manga</h1>
+  </div>
 
   <%# top mangas %>
-  <div class="manga-cards">
+  <div class="manga-index-cards">
     <% @mangas.each do |manga| %>
-      <div class="d-flex flex-column justify-content-center border border-primary">
-        <div class="manga-card border border-primary", onclick="location.href='<%= manga_path(manga) %>'">
-            <% if manga.cover_image.attached? %>
-              <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
-            <% else %>
-              <p>No cover image</p>
-            <% end %>
+      <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
+        <div class="manga-card-overlay"></div>
+        <div class="manga-card-content">
+          <% if manga.cover_image.attached? %>
+            <div class="manga-card-cover">
+              <%= cl_image_tag manga.cover_image.key, crop: :fit, width: 200, height: 300, alt: manga.manga_title %>
+            </div>
+          <% else %>
+            <p>No cover image</p>
+          <% end %>
+          <div class="manga-title-container">
+            <p class="manga-title"><%= link_to manga.manga_title, manga %></p>
+          </div>
         </div>
-        <p class="border border-primary"><%= manga.manga_title %></p>
       </div>
     <% end %>
   </div>
 </div>
+
+
+<style>
+.manga-index-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 15px;
+  padding: 10px;
+}
+
+.manga-card {
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: transform 0.2s ease-in-out;
+}
+
+.manga-card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.manga-card-cover {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.manga-card-cover img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%%;
+  /* padding: 5px; */
+}
+
+.manga-card-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.manga-title {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.manga-title-container {
+  position: absolute;
+  padding: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(255, 255, 255, 0.6); */
+}
+
+.manga-card:hover .manga-title {
+  transform: translateY(0);
+  opacity: 1;
+  background: rgba(255, 255, 255);
+  width: 100%;
+  border-radius: 10px;
+}
+
+.manga-index-header-card {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.8); /* Low opacity black */
+  border-radius: 10px; /* Optional: to make the corners rounded */
+  padding: 5px;
+}
+
+.header-title {
+  color: #fff; /* White text color to contrast with the black background */
+  padding: 10px;
+  margin: 0;
+  font-weight: 750;
+  font-size: 35px;
+}
+
+  .manga-genre-navbar li {
+    transition: all 0.3s ease;
+  }
+
+  .manga-genre-navbar li:hover {
+    transform: scale(1.2);
+  }
+</style>
