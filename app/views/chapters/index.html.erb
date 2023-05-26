@@ -1,7 +1,13 @@
 <div class="form-container">
+  <%= link_to @manga, class: 'back-button' do %>
+    <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+  <% end %>
+<br>
 <h1>Chapters</h1>
-<%= link_to '+ New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
-<%= link_to 'Back to Manga', @manga, class: 'button' %>
+  <%= link_to new_manga_chapter_path(@manga), class: 'button' do %>
+    <i class="fa-solid fa-plus fa-lg" style="margin-right: 5px;"></i>
+    New Chapter
+  <% end %>
 
 <table>
   <thead>
@@ -19,13 +25,21 @@
       <tr>
         <td><%= chapter.chapter_number %></td>
         <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
-        <td><%= link_to 'Show', [@manga, chapter] %></td>
+        <td>
+          <%= link_to [@manga, chapter] do %>
+            <i class="fa-solid fa-eye fa-xl" style="display: block;"></i>
+          <% end %>
+        </td>
         <td>
             <%= link_to(edit_manga_chapter_path(@manga, chapter)) do %>
-              <i class="fa-solid fa-pen-to-square"></i> Edit
+              <i class="fa-solid fa-pen-to-square fa-xl"></i>
             <% end %>
         </td>
-        <td><%= link_to 'Delete', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa-solid fa-trash-alt fa-lg" style="color: #fefed6;"></i>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
