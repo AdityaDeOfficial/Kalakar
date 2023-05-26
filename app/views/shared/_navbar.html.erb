@@ -45,13 +45,13 @@
         <% end %>
       </li>
         <%# button to user "message" - currently fake %>
-        <li class="nav-item position-relative me-4">
-          <%= link_to "#", class: "nav-link" do %>
+        <li class="nav-item position-relative">
+          <%= link_to "#", class: "nav-link d-flex align-items-center" do %>
             <i class="fa-solid fa-envelope fa-2xl" style="color: #f4f4f4;"></i>
+            <span class="ms-2 p-2 bg-info badge rounded-pill">1
+              <span class="visually-hidden">New alerts</span>
+            </span>
           <% end %>
-          <span class="position-absolute top-50 start-100 translate-middle p-2 bg-info badge rounded-pill ms-2">1
-            <span class="visually-hidden">New alerts</span>
-          </span>
         </li>
 
         <%# javascript - User Avatar dropdown box %>

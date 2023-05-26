@@ -41,10 +41,10 @@
 
     <%# My Manga title + manga_new_path %>
     <div class="d-flex justify-content-between align-items-end">
-      <h3>My Manga</h3>
-      <h4>Upload manga :D
+      <h3 style="background: rgba(0, 0, 0, 0.6); padding: 10px; color: white; border-radius: 15px;">My Manga</h3>
+      <h4 style="background: rgba(0, 0, 0, 0.6); padding: 10px; color: white; border-radius: 15px;">Upload manga
         <%= link_to new_manga_path do %>
-        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        <i class="fa-solid fa-arrow-up-from-bracket" style="color: white;"></i>
         <% end %>
       </h4>
     </div>
@@ -57,18 +57,20 @@
           <div class="d-flex flex-column justify-content-center">
             <%# cover image %>
             <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
-              <% if manga.cover_image.attached? %>
-                <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
-              <% else %>
-                <h3><%= manga.manga_title %></h3>
-              <% end %>
-            </div>
+                <% if manga.cover_image.attached? %>
+                  <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+                <% else %>
+                  <h3><%= manga.manga_title %></h3>
+                <% end %>
+                <div class="manga-title-container">
+                  <p class="manga-title"><%= manga.manga_title %></p>
+                </div>
+              </div>
             <%# edit/delete %>
-            <div>
-              <h3 class="d-flex justify-content-center"><%= manga.manga_title %></h3>
+            <div class="d-flex flex-column align-items-center">
               <div class="d-flex justify-content-center gap-2">
-              <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
-              <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
+                <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
+                <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
               </div>
             </div>
           </div>
@@ -83,13 +85,12 @@
     <%# bookmark title%>
     <div class="d-flex justify-content-between align-items-end">
       <h3>Bookmarked <i class="fa-solid fa-heart" style="color: #f39bd3;"></i></h3>
-      <h4>See all -></h4>
     </div>
     <hr>
 
     <%# all user bookmark %>
     <% if @favorited_mangas.present? %>
-      <div class="manga-cards">
+      <div class="manga-dashboard-cards">
         <% @favorited_mangas.each do |manga| %>
           <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
             <% if manga.cover_image.attached? %>
@@ -97,6 +98,9 @@
             <% else %>
               <p><%= manga.manga_title %></p>
             <% end %>
+            <div class="manga-title-container">
+              <p class="manga-title"><%= manga.manga_title %></p>
+            </div>
           </div>
         <% end %>
       </div>
@@ -108,3 +112,59 @@
     <%# <%= link_to "Hot Manga of this week", top_mangas_path %>
   </div>
 </div>
+
+<style>
+
+.manga-dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 70px;
+}
+
+.manga-card {
+  position: relative;
+  background: rgba(255, 255, 224, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.manga-card img {
+  width: 100%;
+  height: auto;
+}
+
+.manga-title {
+  margin: 0;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.manga-title-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+.manga-card:hover .manga-title {
+  transform: translateY(0);
+  opacity: 1;
+  background: rgba(255, 255, 255);
+  border-radius: 5px;
+}
+
+.button {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  border-color: #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+</style>
