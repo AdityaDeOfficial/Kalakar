@@ -1,5 +1,10 @@
 <div class="chapter-container">
-  <%= link_to 'Back to Manga', @manga, class: 'button' %>
+   <div>
+    <%= link_to @manga, class: 'back-button' do %>
+<i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+    <% end %>
+    </div>
+
   <div class="chapter-header">
     <h2>Chapter <%= @chapter.chapter_number %>: <%= @chapter.chapter_title %></h2>
   </div>

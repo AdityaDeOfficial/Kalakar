@@ -1,7 +1,11 @@
 <%# manga new path - Manga Upload page  %>
 <div class="form-container p-2">
   <%# back to user dashboard page %>
-  <%= link_to 'Back', dashboard_index_path %>
+  <div>
+    <%= link_to dashboard_index_path, class: 'back-button' do %>
+      <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+    <% end %>
+  </div>
 
   <h1 class="d-flex justify-content-center"><i class="fa-solid fa-star"></i>New Manga<i class="fa-solid fa-star"></i></h1>
   <%= render "form_manga", manga: @manga%>
