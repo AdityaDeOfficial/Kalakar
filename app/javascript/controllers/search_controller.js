@@ -18,7 +18,7 @@ export default class extends Controller {
       form.appendChild(optionElement);
     });
     form.size = form.length;
-    const multiplier = form.length * 35;
+    const multiplier = form.length * 40;  // resize bar
     const dd = document.getElementById("dropdown-select");
     dd.style.height = multiplier + "px";
     dd.classList.remove("hidden"); // show the form
