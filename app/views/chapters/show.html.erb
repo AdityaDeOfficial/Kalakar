@@ -15,7 +15,7 @@
         <% @chapter.chapter_photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= 'active' if index.zero? %>">
             <div class="chapter-image-container">
-              <%= cl_image_tag photo.key, width: 1000, height: 1500, crop: :fill, alt: "Chapter Photo", class: "d-block w-100", :quality => "auto:best", :fetch_format => "auto" %>
+              <%= cl_image_tag photo.key, width: 1100, height: 1500, crop: :fill, alt: "Chapter Photo", class: "d-block w-100", :quality => "auto:best", :fetch_format => "auto" %>
             </div>
           </div>
         <% end %>
@@ -30,14 +30,6 @@
       </button>
     </div>
   <% end %>
-
-<!--   <style>
-  .chapter-image-container {
-    border: 2px solid #ddd; /* Add your desired border style here */
-    border-radius: 10px;
-    padding: 10px; /* Add additional padding if needed */
-  }
- </style> -->
 
 </div>
 
@@ -85,3 +77,11 @@
     <% end %>
   </div>
 </div>
+
+<style>
+ .chapter-image-container {
+  border: 2px solid #ddd; /* Add your desired border style here */
+  border-radius: 10px;
+  padding: 10px; /* Add additional padding if needed */
+}
+</style>

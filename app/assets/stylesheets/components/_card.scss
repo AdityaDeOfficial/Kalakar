@@ -56,8 +56,6 @@
   //background-color: rgba(255, 255, 255, 0.8);
 }
 
-
-//chapter card
 .chapter-card {
   margin: 0;
   padding: 0;
@@ -69,4 +67,13 @@
   font-weight: bold;
   height: 36px;
   font-size: 1.2em;
+  transition: background-color 0.3s ease;  // Smooth transition
+  cursor: pointer;  // Hand cursor on hover
+  overflow: hidden;  // Ensures content does not overflow
+  word-wrap: break-word;  // Breaks the words at the end of the line
+}
+
+.chapter-card:hover {
+  background-color: rgba(0, 0, 0, 0.6);  // Background color on hover
+  color: #FFFFD2;  // Text color on hover
 }
