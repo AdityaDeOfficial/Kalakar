@@ -1,17 +1,20 @@
 // Le Wagon boilerplate
-.hidden {
-  display: none;
-}
+  .hidden {
+    display: none;
+  }
+
   .navbar {
     font-family: 'Roboto', sans-serif;
     position: relative;
     background: linear-gradient(#A7e9cd, #a7e9cd);
   }
+
   .navbar-brand {
     font-weight: bold;
   }
   .nav-link {
     color: #458469;
+
   }
 
   .nav-item {
@@ -19,8 +22,28 @@
     background-color: #A7e9cd;
   }
 
-    // AJAX search bar
-  .navbar-nav .search-form {
+  // avatar dropdown container
+  .dropdown-menu-end {
+    transform: translateY(-39%);
+    font-family: 'Fugaz One', serif;
+    font-weight: 100;
+    font-size: 0.80em;
+    line-height: 1.1;
+    background: linear-gradient(rgba(174, 231, 207, 0.85), rgba(211, 219, 215, 0.95));
+    border: none;
+    border-radius: 58px;
+  }
+
+
+
+  // objects in avatar menu dropdown
+  .dropdown-item {
+    color:#7b7699;
+    text-align: center;
+  }
+  // AJAX search bar
+    // container
+    .navbar-nav .search-form {
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -28,26 +51,30 @@
     flex-wrap: wrap;
   }
 
+  // main container
   .search-form {
     height: 50px;
     align-self: center;
     display: flex;
   }
 
+  // search input container
   .form-control.me-2 {
-  background: linear-gradient(#d3dbd7, #Aee7cf,);
-  border-radius: 58px;
+  background: linear-gradient(#d3dbd7, #Aee7cf);
+  border-radius: 25px;
   border-color: transparent;
   box-shadow: 0 0 px 0 #ccc;
   width: 500px;
   }
 
+   // search input bar
   .search-input {
     width: 58%;
     display: flex;
     align-items: center;
-
   }
+
+  // magnifying glass icon in searchbar
   .search-button {
     margin: -35px;
     background: none;
@@ -56,14 +83,19 @@
     cursor: pointer;
   }
 
+  // AJAX injection results
   #dropdown-select {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fugaz One', serif;
+    font-weight: 100;
+    font-size: 0.80em;
+    line-height: 1.1;
     color:#7b7699;
     background: linear-gradient(#Aee7cf,#d3dbd7);
     border: none;
-    width: 225px;
+    width: 250px;
   }
 
+  // avatar dropdown
   .search-and-dropdown {
     display: flex;
     flex-direction: column;
