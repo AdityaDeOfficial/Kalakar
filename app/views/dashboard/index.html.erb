@@ -12,7 +12,7 @@
     </div>
 
     <%# user social media/contact %>
-    <div>
+    <div class="ps-3">
       <h1><%= current_user.username %></h1>
 
       <i class="fa-solid fa-envelope"></i>
@@ -29,9 +29,11 @@
     </div>
   </div>
 
+  <br>
+
   <%# user bio %>
   <div>
-    <p>Bio: <%= current_user.bio %></p>
+    <h5>Bio: <%= current_user.bio %></h5>
   </div>
 
   <br>
@@ -41,10 +43,10 @@
 
     <%# My Manga title + manga_new_path %>
     <div class="d-flex justify-content-between align-items-end">
-      <h3 style="background: rgba(0, 0, 0, 0.8); padding: 10px; color: white; border-radius: 15px;">My Manga</h3>
-      <h4 style="background: rgba(0, 0, 0, 0.8); padding: 10px; color: white; border-radius: 15px;">Upload manga
+      <h3>My Manga</h3>
+      <h4>Upload manga
         <%= link_to new_manga_path do %>
-        <i class="fa-solid fa-arrow-up-from-bracket" style="color: white;"></i>
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
         <% end %>
       </h4>
     </div>
@@ -54,20 +56,20 @@
     <% if !@mangas.nil? %>
       <div class="manga-dashboard-cards">
         <% @mangas.each do |manga| %>
-          <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center align-items-center">
             <%# cover image %>
             <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
-                <% if manga.cover_image.attached? %>
-                  <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
-                <% else %>
-                  <h3><%= manga.manga_title %></h3>
-                <% end %>
-                <div class="manga-title-container">
-                  <p class="manga-title"><%= manga.manga_title %></p>
-                </div>
+              <% if manga.cover_image.attached? %>
+                <%= cl_image_tag manga.cover_image.key, crop: :fill, alt: manga.manga_title %>
+              <% else %>
+                <h3><%= manga.manga_title %></h3>
+              <% end %>
+              <div class="manga-title-container">
+                <p class="manga-title"><%= manga.manga_title %></p>
               </div>
+            </div>
             <%# edit/delete %>
-            <div class="d-flex flex-column align-items-center">
+            <div class="pt-3 ">
               <div class="d-flex justify-content-center gap-2">
                 <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
                 <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
@@ -84,7 +86,7 @@
 
     <%# bookmark title%>
     <div class="d-flex justify-content-between align-items-end">
-      <h3>Bookmarked <i class="fa-solid fa-heart" style="color: #f39bd3;"></i></h3>
+      <h3>Bookmarked  <i class="fa-solid fa-heart" style="color: #f39bd3;"></i></h3>
     </div>
     <hr>
 
@@ -114,11 +116,21 @@
 </div>
 
 <style>
+.container {
+ background: rgba(0, 0, 0, 0.6);
+ border-radius: 10px;
+ padding: 12px;
+}
+
+i {
+  font-size: 1.2em;
+}
 
 .manga-dashboard-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 70px;
+  grid-gap: 15px;
+  padding-bottom: 20px;
 }
 
 .manga-card {
@@ -154,15 +166,13 @@
 .manga-card:hover .manga-title {
   transform: translateY(0);
   opacity: 1;
-  background: rgba(255, 255, 255);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
 }
 
 .button {
   color: #fff;
-  background: rgba(0, 0, 0, 0.8);
-  border-color: #007bff;
-  padding: 5px 10px;
+  background: rgba(168,234,206);
   border-radius: 5px;
   text-decoration: none;
 }

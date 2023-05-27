@@ -1,12 +1,24 @@
-<%# manga new path - Manga Upload page  %>
-<div class="form-container p-2">
-  <%# back to user dashboard page %>
-  <div>
-    <%= link_to dashboard_index_path, class: 'back-button' do %>
-      <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
-    <% end %>
-  </div>
+<div class="container">
+  <%# manga new path - Manga Upload page  %>
+  <div class="form-container p-2">
+    <%# back to user dashboard page %>
+    <div>
+      <%= link_to dashboard_index_path, class: 'back-button' do %>
+        <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+      <% end %>
+    </div>
 
-  <h1 class="d-flex justify-content-center"><span style="background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; padding: 5px; border-radius: 10px;"><i class="fa-solid fa-star"></i>New Manga<i class="fa-solid fa-star"></i></span></h1>
-  <%= render "form_manga", manga: @manga%>
+    <h1 class="d-flex justify-content-center"><span><i class="fa-solid fa-star"></i>New Manga<i class="fa-solid fa-star"></i></span></h1>
+    <%= render "form_manga", manga: @manga%>
+  </div>
 </div>
+
+<style>
+
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 12px;
+  max-width: 720px;
+}
+</style>

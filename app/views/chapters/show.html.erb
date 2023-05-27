@@ -1,9 +1,9 @@
 <div class="chapter-container">
-   <div>
+  <div>
     <%= link_to @manga, class: 'back-button' do %>
-<i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+      <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
     <% end %>
-    </div>
+  </div>
 
   <div class="chapter-header">
     <h2>Chapter <%= @chapter.chapter_number %>: <%= @chapter.chapter_title %></h2>
@@ -31,10 +31,8 @@
     </div>
   <% end %>
 
-</div>
-
   <!-- Add a new chapter review -->
-  <div class="form-container">
+  <div class="form-container py-2">
     <h2>Add a chapter review</h2>
     <%= form_with url: manga_chapter_chapter_reviews_path(@chapter.manga, @chapter), local: true do |form| %>
       <div>
@@ -42,19 +40,20 @@
         <%= form.text_area "chapter_review[content]", required: true %>
       </div>
 
-    <div>
-      <%= form.label :rating %>
-      <%= form.select "chapter_review[rating]", options_for_select((1..5).to_a.reverse.map { |number| [number, number] }), {}, class: 'star-rating' %>
+      <div>
+        <%= form.label :rating %>
+        <%= form.select "chapter_review[rating]", options_for_select((1..5).to_a.reverse.map { |number| [number, number] }), {}, class: 'star-rating' %>
         <script>
           $(document).ready(function() {
             $('#chapter_review_rating').barrating({
               theme: 'fontawesome-stars'
             });
-          </script>
+          });
+        </script>
       </div>
 
       <div>
-        <%= form.submit "Add Review" %>
+        <%= form.submit "Add Review"  %>
       </div>
     <% end %>
 
@@ -84,4 +83,11 @@
   border-radius: 10px;
   padding: 10px; /* Add additional padding if needed */
 }
+
+.chapter-container {
+ background: rgba(0, 0, 0, 0.6);
+ border-radius: 10px;
+ padding: 12px;
+}
+
 </style>

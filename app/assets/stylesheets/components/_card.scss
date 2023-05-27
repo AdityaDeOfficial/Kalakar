@@ -12,9 +12,8 @@
 .manga-dashboard-cards{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 8px;
-  padding-top: 0px;
-  margin-top: 0px;
+  grid-gap: 15px;
+  padding: 10px;
 }
 
 // manga card
@@ -75,5 +74,5 @@
 
 .chapter-card:hover {
   background-color: rgba(0, 0, 0, 0.6);  // Background color on hover
-  color: #FFFFD2;  // Text color on hover
+  color: #FFFFD2; // Text color on hover
 }

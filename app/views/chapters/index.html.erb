@@ -1,34 +1,69 @@
-<div class="form-container">
-<h1>Chapters</h1>
-<%= link_to '+ New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
-<%= link_to 'Back to Manga', @manga, class: 'button' %>
+<div class="container">
+  <div class="form-container">
+    <div>
+      <%= link_to @manga, class: 'back-button' do %>
+        <i class="fa-solid fa-arrow-left-long" style="color: #fefed6; font-size: 1.8em;"></i>
+      <% end %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Chapter Number</th>
-      <th>Chapter Title</th>
-      <th> <%= @manga.chapters.count %></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody class="py-2">
-    <% @chapters.each do |chapter| %>
+  <h1 class="mt-2">Chapters Upload</h1>
+  <div class="my-2">
+    <%= link_to '+ New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
+  </div>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= chapter.chapter_number %></td>
-        <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
-        <td><%= link_to 'Show', [@manga, chapter] %></td>
-        <td>
-            <%= link_to(edit_manga_chapter_path(@manga, chapter)) do %>
-              <i class="fa-solid fa-pen-to-square"></i> Edit
-            <% end %>
-        </td>
-        <td><%= link_to 'Delete', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Chapter Number</th>
+        <th>Chapter Title</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody class="py-2">
+      <% @chapters.each do |chapter| %>
+        <tr>
+          <td><%= chapter.chapter_number %></td>
+          <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
+          <td><%= link_to 'Show', [@manga, chapter] %></td>
+          <td>
+              <%= link_to(edit_manga_chapter_path(@manga, chapter), style:"#FFFFD2") do %>
+                <i class="fa-solid fa-pen-to-square"></i> Edit
+              <% end %>
+          </td>
+          <td><%= link_to 'Delete', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
 </div>
+
+
+<style>
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 12px;
+  max-width: 720px;
+}
+
+a, td {
+ color:#FFFFFF;
+}
+
+
+.button{
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #A8EACE;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  font-style: bold;
+}
+</style>
