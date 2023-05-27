@@ -1,9 +1,9 @@
 <div class="chapter-container">
-   <div>
+  <div>
     <%= link_to @manga, class: 'back-button' do %>
       <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
     <% end %>
-    </div>
+  </div>
 
   <div class="chapter-header">
     <h2>Chapter <%= @chapter.chapter_number %>: <%= @chapter.chapter_title %></h2>
@@ -53,7 +53,7 @@
       </div>
 
       <div>
-        <%= form.submit "Add Review" %>
+        <%= form.submit "Add Review"  %>
       </div>
     <% end %>
 
@@ -90,15 +90,4 @@
  padding: 12px;
 }
 
-/*
-.button{
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #A8EACE;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  border: none;
-  font-style: bold;
-} */
 </style>

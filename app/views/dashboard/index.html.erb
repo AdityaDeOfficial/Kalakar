@@ -54,9 +54,9 @@
 
     <%# display all user mangas %>
     <% if !@mangas.nil? %>
-      <div class="manga-dashboard-cards border border-primary">
+      <div class="manga-dashboard-cards">
         <% @mangas.each do |manga| %>
-          <div class="d-flex flex-column justify-content-center align-items-center border border-primary">
+          <div class="d-flex flex-column justify-content-center align-items-center">
             <%# cover image %>
             <div class="manga-card", onclick="location.href='<%= manga_path(manga) %>'">
               <% if manga.cover_image.attached? %>
@@ -69,7 +69,7 @@
               </div>
             </div>
             <%# edit/delete %>
-            <div class="border border-primary pt-3 ">
+            <div class="pt-3 ">
               <div class="d-flex justify-content-center gap-2">
                 <p><%= link_to 'Edit', edit_manga_path(manga), class:"button" %></p>
                 <p><%= link_to 'Delete', manga_path(manga), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"button" %></p>
