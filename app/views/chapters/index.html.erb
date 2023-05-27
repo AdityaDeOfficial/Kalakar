@@ -6,7 +6,6 @@
       <% end %>
     </div>
 
-
   <h1 class="mt-2">Chapters Upload</h1>
   <div class="my-2">
     <%= link_to '+ New Chapter', new_manga_chapter_path(@manga), class: 'button' %>
@@ -28,13 +27,21 @@
         <tr>
           <td><%= chapter.chapter_number %></td>
           <td><%= link_to chapter.chapter_title, [@manga, chapter] %></td>
-          <td><%= link_to 'Show', [@manga, chapter] %></td>
-          <td>
-              <%= link_to(edit_manga_chapter_path(@manga, chapter), style:"#FFFFD2") do %>
-                <i class="fa-solid fa-pen-to-square"></i> Edit
-              <% end %>
+          <td>          
+            <%= link_to [@manga, chapter] do %>
+              <i class="fa-solid fa-eye fa-xl" style="display: block;"></i>
+            <% end %>
           </td>
-          <td><%= link_to 'Delete', manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= link_to(edit_manga_chapter_path(@manga, chapter)) do %>
+              <i class="fa-solid fa-pen-to-square fa-xl"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to manga_chapter_path(@manga, chapter), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa-solid fa-trash-alt fa-lg" style="color: #fefed6;"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
