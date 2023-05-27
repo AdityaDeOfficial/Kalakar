@@ -18,12 +18,12 @@
     </div>
 
     <div class="field">
-      <%= form.label :description, '<span style="background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; padding: 5px; border-radius: 5px;">Description</span>'.html_safe %>
+      <%= form.label :description %>
       <%= form.text_area :description %>
     </div>
 
     <div class="field">
-      <%= form.label :tag_list, '<span style="background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; padding: 5px; border-radius: 5px;">Tags (separated by commas)</span>'.html_safe %>
+      <%= form.label :tag_list %>
       <%= form.text_field :tag_list, value: @manga.tag_list.join(", ") %>
     </div>
 
@@ -34,7 +34,7 @@
     </label>
 
     <div>
-      <%= form.submit "Submit", class:"btn btn-primary" %>
+      <%= form.submit "Submit" %>
     </div>
   </div>
 <% end %>
