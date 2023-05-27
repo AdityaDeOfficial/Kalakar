@@ -1,26 +1,27 @@
-<div class="container">
+<div class="container manga-container my-2">
   <%# manga cover image %>
-  <div class="manga-container d-flex mx-4">
+  <div class="d-flex">
     <div class="manga-cover-image">
       <% if @manga.cover_image.attached? %>
-        <%= cl_image_tag @manga.cover_image.key, width: 300, height: 380, crop: :fill, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
+        <%= cl_image_tag @manga.cover_image.key, alt: @manga.manga_title, :quality => "auto", :fetch_format => "auto" %>
       <% else %>
         <p>No cover image</p>
       <% end %>
     </div>
 
-    <div class="ps-3">
+    <div class="ps-4">
       <%# manga info %>
-      <h1><strong>Title:</strong><%= @manga.manga_title %></h1>
-      <h1><strong>Author:</strong><%= @manga.user.username %></h1>  <%# TODO: able to link the author name to the user dashboard %>
-      <%# <%= link_to "#{@manga.user.username}", dashboard_index_path(@manga.user) </h3> %>
-      <h1>Description:<%= @manga.description %></h1>
+      <div>
+        <h2 class="text-uppercase" style="color: #FFFD2; font-weight: bold; margin-bottom: 10px;"><%= @manga.manga_title %></h2>
+        <h4 style="color: #FFFD2; margin-bottom: 20px;">By <%= @manga.user.username %></h4>
+        <p style="color: #FFFD2; font-size: 18px;"><%= @manga.description %></p>
+      </div>
 
 
       <%# tag %>
-      <div class="d-flex flex-row gap-1 py-2">
+      <div class="d-flex flex-row gap-1 py-3">
         <% @manga.tag_list.each do |tag| %>
-          <div class="badge rounded-pill" style="background-color: rgba(0, 0, 0, 0.6); color: white;">
+          <div class="badge rounded-pill" style="background-color: rgba(0, 0, 0, 0.8); color: white;">
             #<%= link_to tag, mangas_path(tag: tag), style: "color: white;" %>
           </div>
         <% end %>
@@ -29,7 +30,9 @@
       <%# bookmark button or if manga creater then its an edit button %>
       <div class="align-items-end">
         <% if current_user == @manga.user %>
-          <%= link_to 'Edit', manga_chapters_path(@manga), class: "button" %>
+         <%= link_to  manga_chapters_path(@manga), class: "button" do %>
+          <i class="fa-solid fa-pen-to-square"></i> Edit
+         <% end %>
         <% else %>
           <% if current_user.favorited?(@manga) %>
             <%= button_to unfavorite_manga_path(@manga), method: :post, class: "bookmark-button" do %>
@@ -51,34 +54,43 @@
   <%# render chapters from chapter controller %>
   <%= render partial: 'chapters/chapters_list', locals: { chapters: @manga.chapters, manga: @manga } %>
 
-
-  <%# Manga Review %>
-  <h2>Manga Reviews</h2>
-   <%# add a new manga review %>
-    <div>
-      <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
-        <%# content %>
-        <div class="form-group">
-          <%= form.label :content, class: "form-label" %>
-          <%= form.text_area :content, required: true, class: "form-control", placeholder:"leave a comment!" %>
-        </div>
-        <%# rating %>
-        <div class="form-group">
-          <%= form.label :rating, class: "form-label" %>
-          <%= form.select :rating, (1..5).to_a.reverse, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
-        </div>
-        <%# submit button %>
-        <div class="form-group">
-          <%= form.submit "Submit Review", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+  <div>
+    <%# Manga Review %>
+    <h2 class="h2-style">Manga Reviews</h2>
+    <%# add a new manga review %>
+      <div>
+        <%= form_with model: [ @manga, @manga.manga_reviews.build ], local: true, html: { class: "add-review-form" } do |form| %>
+          <%# content %>
+          <div class="form-group">
+            <%= form.label :content, class: "form-label" do %>
+              <span>
+                Content
+              </span>
+            <% end %>
+            <%= form.text_area :content, required: true, class: "form-control", placeholder:"leave a comment!" %>
+          </div>
+          <%# rating %>
+          <div class="form-group">
+            <%= form.label :content, class: "form-label" do %>
+              <span>
+                Rating
+              </span>
+            <% end %>
+            <%= form.select :rating, (1..5).to_a.reverse, required: true, class: "form-control", input_html: {data: {controller: "star-rating"}} %>
+          </div>
+          <%# submit button %>
+          <div class="form-group">
+            <%= form.submit "Submit Review", class: "btn btn-primary", style: "background-color: rgba(168,234,206, 0.9); color: #FFFFD2;" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
 
     <!-- Display chapter reviews -->
-    <div class="reviews-container">
-    <%# each manga review %>
-    <h2>Reviews</h2>
+    <div class="reviews-container py-3">
+      <%# each manga review %>
+      <h2>Reviews</h2>
       <% if @manga.manga_reviews.any? %>
         <ul class="review-ul">
           <% @manga.manga_reviews.order(created_at: :desc).each do |manga_review| %>
@@ -101,11 +113,39 @@
 <style>
 .manga-container {
  background: rgba(0, 0, 0, 0.6);
- border-radius: 4px;
+ border-radius: 10px;
  padding: 12px;
 }
 
 label {
   color: #FFFFD2;
+}
+
+.manga-cover-image {
+  width: auto;
+  height: 100%;
+}
+
+.manga-cover-image img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.h2-style {
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.button{
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #A8EACE;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  font-style: bold;
 }
 </style>

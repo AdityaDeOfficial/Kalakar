@@ -23,7 +23,7 @@
     </div>
 
     <div class="field">
-      <%= form.label :tag_list, 'Tags (separated by commas)' %>
+      <%= form.label :tag_list %>
       <%= form.text_field :tag_list, value: @manga.tag_list.join(", ") %>
     </div>
 
@@ -34,7 +34,7 @@
     </label>
 
     <div>
-      <%= form.submit "Submit", class:"btn btn-primary" %>
+      <%= form.submit "Submit", style: "background-color: rgba(168,234,206, 0.9); color: #FFFFD2;" %>
     </div>
   </div>
 <% end %>
