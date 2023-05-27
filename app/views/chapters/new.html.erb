@@ -1,13 +1,24 @@
-<%# chapter new path - Chapter Upload page %>
-<div class="form-container p-2">
-  <%# back to manga/id page %>
-  <div>
-    <%= link_to manga_path(@manga), class: 'back-button' do %>
-      <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
-    <% end %>
+<div class="container">
+  <%# chapter new path - Chapter Upload page %>
+  <div class="form-container p-2">
+    <%# back to manga/id page %>
+    <div>
+      <%= link_to manga_path(@manga), class: 'back-button' do %>
+        <i class="fa-solid fa-arrow-left-long fa-beat fa-2xl" style="color: #fefed6;"></i>
+      <% end %>
+    </div>
+
+    <h1 class="d-flex justify-content-center"><span><i class="fa-solid fa-star"></i>New Chapter<i class="fa-solid fa-star"></i></span></h1>
+    <%= render 'form_chapter', chapter: @chapter %>
   </div>
-
-  <h1 class="d-flex justify-content-center"><span style="background-color: rgba(0, 0, 0, 0.8); color: #FFFFFF; padding: 5px; border-radius: 10px;"><i class="fa-solid fa-star"></i>New Chapter<i class="fa-solid fa-star"></i></span></h1>
-  <%= render 'form_chapter', chapter: @chapter %>
-
 </div>
+
+<style>
+
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 12px;
+  max-width: 720px;
+}
+</style>
